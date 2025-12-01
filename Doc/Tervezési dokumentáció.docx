@@ -1,1 +1,3 @@
 Tervezési dokumentáció
+Technológia: React, Node js, mongodb
+Api: A backend lekéri az adatbázisbol az adatokat és API-n keresztül szolgáltatja a Frontendnek.
