@@ -10,10 +10,30 @@ Adatbázis terv:
 
 
 UI/UX tervek:
+    Felhasználói útvonalak:
+        Vásárló útvonala:
+            1.Főoldal megnyitása
+            2.Étlap böngészése
+            3.Étel kiválasztása
+            4.Étel személyreszabása
+            5.Étel kosárba helyezése
+            6.Kosár megnyitása
+            7.Szállítási adatok kitöltése
+            8.Fizetési mód kiválasztása
+            9.Rendelés leadása
 
+        Futár útvonala:
+            1.Főoldal megnyitása
+            2.Bejelentkezési oldal megnyitása
+            3.Bejelentkezés - az oldal automatikusan a futár oldalt jeleníti meg
+            4.Rendelések menüpont megnyitása
 
-
-
-
+        Admin útvonala:
+            1.Főoldal megnyitása
+            2.Bejelentkezési oldal megnyitása
+            3.Bejelentkezés - az oldal automatikusan az admin oldalt jeleníti meg
+            4.Étlap szerkesztése vagy futárok menü megnyitása
+            5.Étlap: Szükség szerint tud hozzáadni terméket/törölni, ideiglenesen nem elérhetővé tenni, akciót hozzáadni
+            6.Futár: Szükség szerint tud hozzáadni/törölni futárt
 
 Szerkesztette: Rab Viktor & Szűcs Zsombor
