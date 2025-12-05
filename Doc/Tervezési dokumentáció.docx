@@ -1,8 +1,8 @@
 Tervezési dokumentáció
 
 Rendszer architektúra terv:
-    Technológia: React, Node js, mongodb
-    Api: A backend lekéri az adatbázisbol az adatokat és API-n keresztül szolgáltatja a Frontendnek.
+   architektúra
+   
 
 
 Adatbázis terv:
@@ -35,5 +35,24 @@ UI/UX tervek:
             4.Étlap szerkesztése vagy futárok menü megnyitása
             5.Étlap: Szükség szerint tud hozzáadni terméket/törölni, ideiglenesen nem elérhetővé tenni, akciót hozzáadni
             6.Futár: Szükség szerint tud hozzáadni/törölni futárt
+
+    Design Irányelvek:
+        Főoldal: Az oldal tetején egy menü található, menüpontokkal és egy logóval ellátva.
+        
+
+    Funkcionális követelmények listája:
+        Regisztráció/Bejelentkezés
+        Termékek böngészése     
+        Kosár funkció
+        Rendelés leadása
+        Házhozszállítás
+        Szűrés/Keresés
+        Admin funkciók (termék hozzáadása,módosítása,törlése,státusz frissítése)
+    
+    Nem Funkcionális követelmények listája:
+        Teljesítmény
+        Biztonság
+        Kompatibilitás
+        Karbantarthatóság
 
 Szerkesztette: Rab Viktor & Szűcs Zsombor
