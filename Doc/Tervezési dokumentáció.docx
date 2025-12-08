@@ -1,12 +1,22 @@
 Tervezési dokumentáció
 
 Rendszer architektúra terv:
-   architektúra
+   Architektúra típus: Kliens–szerver architektúra, valós idejű adatkapcsolattal.
+    Frontend (kliens):
+        Böngészőben futó webalkalmazás (React, Nodejs)
+        Felhasználói felület megjelenítése és kezelése
+        Adatok lekérése és küldése a backend felé
+    Backend (szerver):
+        MongoDB Realtime Database
+        Rendelések, felhasználók, termékek tárolása
+        Hitelesítés és adatkezelés
+    Adatbázis:
+        MongoDB
    
-
-
-Adatbázis terv:
-
+Rendszerkövetelmény: 
+    Internetkapcsolattal rendelkező számítógép vagy okostelefon
+    Windows, Android, IOS
+    A legújabb verziójú böngészőkell kompatibilis
 
 
 UI/UX tervek:
