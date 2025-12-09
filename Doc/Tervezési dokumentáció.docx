@@ -7,11 +7,12 @@ Rendszer architektúra terv:
         Felhasználói felület megjelenítése és kezelése
         Adatok lekérése és küldése a backend felé
     Backend (szerver):
-        MongoDB Realtime Database
+        NodeJs + express alapú REST API
         Rendelések, felhasználók, termékek tárolása
         Hitelesítés és adatkezelés
-    Adatbázis:
-        MongoDB
+    Adatbázis(felhőalapú):
+        Supabase szolgáltatásban futó PostgreSQL adatbázis, ami az adatok tárolásáért felel
+
    
 Rendszerkövetelmény: 
     Internetkapcsolattal rendelkező számítógép vagy okostelefon
