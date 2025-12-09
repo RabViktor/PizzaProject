@@ -11,7 +11,7 @@ Rendszer architektúra terv:
         Rendelések, felhasználók, termékek tárolása
         Hitelesítés és adatkezelés
     Adatbázis(felhőalapú):
-        Supabase szolgáltatásban futó PostgreSQL adatbázis, ami az adatok tárolásáért felel
+        Supabase szolgáltatásban futó PostgreSQL adatbázis, ami az adatok tárolásáért felel.
 
    
 Rendszerkövetelmény: 
