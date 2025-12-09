@@ -47,8 +47,24 @@ UI/UX tervek:
             6.Futár: Szükség szerint tud hozzáadni/törölni futárt
 
     Design Irányelvek:
-        Főoldal: Az oldal tetején egy menü található, menüpontokkal és egy logóval ellátva.
-        
+    - Az oldal tetején egy menü található, menüpontokkal és egy logóval ellátva.
+       -Menüpontok:
+        Főoldal: Az oldalon egy nagy slider fogadja a felhasználót.
+        Étlap: Tartalmazza a teljes étlapot ahol tud a felhasználó leadni rendelést.
+        Kapcsolat: Az étterem elérhetőségei lesznek feltűntetve.
+        Searchbar: Ezzel a funkcióval tud böngészni a felhasználó az oldalon.
+        Bejelentkezés: A felhasználó itt tud bejelentkezni ha már van meglévő profilja.
+        Regisztráció: A felhasználó itt tud regisztrálni ha még nem tette meg.
+
+    - Fő színek:  #BC271C, #EBBC69, #F3E5BE, #FFFFFF
+   
+    - Étvágygerjesztő vizuális tartalom: Nagy felbontású, profi ételfotók és rövid videók, amelyek kiemelik a pizza frissességét és ízét.
+    - Jól látható gombok: Rendelés vagy Kosár gomb mindig szem előtt legyen, akár fixen a fejlécben
+    - Mobilbarát, reszponzív design
+    - Interaktív elemek: Online rendelési rendszer, pizzakombinációk testreszabása, akciók kiemelése.
+    - Premium előfizetés feltűntetése: A bejelentkezett, előfizetett felhasználóknak az oldal tetején a profiljuk különleges design-t kap.
+    
+    - Az oldal alján szintén az elérhetőséggel kapcsolatos információk találhatók.
 
     Funkcionális követelmények listája:
         Regisztráció/Bejelentkezés
