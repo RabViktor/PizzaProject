@@ -17,19 +17,13 @@ export function CategoryFilter({ selectedCategory, onSelectCategory }) {
     <div className="category-div">
       {categories.map((cat) => (
         <button
-          className="category-btn"
+          className={`category-btn ${selectedCategory === cat ? "selected" : ""}`}
           key={cat}
           onClick={() => onSelectCategory(cat)}
-          style={{
-            padding: "10px 16px 7px",
-            borderRadius: "5px",
-            border: selectedCategory === cat ? "2px solid blue" : "1px solid gray",
-            backgroundColor: selectedCategory === cat ? "lightblue" : "white",
-            cursor: "pointer"
-          }}
         >
           {translations[cat]}
         </button>
+
       ))}
     </div>
   );
