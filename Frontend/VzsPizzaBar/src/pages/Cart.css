@@ -1,0 +1,341 @@
+#cart-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+#cart-card {
+    max-width: 1400px;   
+    width: 100%;         
+    margin: 0 auto;      
+    display: flex;
+    align-items: stretch;
+}
+#cart-div > div { width: 100%;}
+
+.empty-text{
+    text-align: center;
+    font-size: 70px;
+    color: white;
+    margin-top: 60px;
+}
+
+/* --- BAL OLDAL: KOSÁR LISTA --- */
+#cart-list {
+    flex: 2;
+    background-color: #BC271C;
+    padding: 25px;
+    border: 4px solid black;
+    border-right: none;
+    border-radius: 17px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%;
+}
+
+#cart-text{
+    text-align: center;
+}
+
+#cart-text h1 {
+    color: white;
+    margin: 0;
+    font-size: 70px;
+
+}
+
+.line-cart {
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    margin: 10px 0 20px 0;
+}
+
+/* --- KOSÁR TERMÉKEK --- */
+#cart-products {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+#cart-products::-webkit-scrollbar {
+    width: 8px;
+}
+
+#cart-products::-webkit-scrollbar-thumb {
+    background-color: #ebbc69;
+    border-radius: 4px;
+    border: 2px solid black;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background-color: #A61F17;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 12px;
+    gap: 15px;
+}
+
+.cart-image {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid black;
+}
+
+.cart-details {
+    width: 80%;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-details h3 {
+    margin: 0;
+    font-size: 40px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+#price-quantity{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.quantity-controls button {
+    width: 32px;
+    height: 32px;
+    background-color: #ebbc69;
+    border: 3px solid black;
+    border-radius: 6px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+span {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.cart-details p {
+    margin-top: 18px;
+    margin-right: 50px;
+    font-size: 33px;
+    color: #f3e5be;
+}
+
+.remove {
+    background: none;
+    border: none;
+    font-size: 33px;
+    color: white;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+/* --- JOBB OLDAL: ÖSSZEGZÉS --- */
+#cart-summary {
+    flex: 1;
+    background-color: #f3e5be;
+    padding: 25px;
+    border: 4px solid black;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 17px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#summary-list ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+
+#summary-list{
+    max-height: 336px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#summary-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#summary-list::-webkit-scrollbar-thumb {
+    background-color: #ebbc69;
+    border-radius: 4px;
+    border: 2px solid black;
+}
+
+#summary-text h1 {
+    margin: 0;
+    font-size: 70px;
+    color: black;
+    text-align: center;
+}
+
+#summary-text h3::before {
+    content: "";
+    display: inline-block;
+    width: 24px;          
+    height: 24px;         
+    background-image: url("/timer-icon.png"); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;   
+    vertical-align: middle;
+}
+
+
+#summary-text h3 {
+    margin: 20px 0;
+    font-size: 28px;
+    color: black;
+    text-align: center;
+}
+.sum-items p{
+    color: black;
+    font-size: 27px;
+}
+.sum-items{
+    display: flex;
+    justify-content: space-between;
+}
+
+#delivery-text{
+    display: flex;
+    justify-content: space-between;
+}
+
+#delivery-text p{
+    color: black;
+    font-size: 28px;
+    padding: 0;
+}
+
+#sm-qp{
+    display: flex;
+    gap: 15px;
+}
+
+#summary-price {
+    margin-top: 20px;
+}
+#btn-div{
+    display: flex;
+    justify-content: center;
+}
+
+#total-price {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+.price{
+    color: black;
+    font-size: 38px;
+}
+
+.item-count{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.item-count p{
+    color: black;
+    font-size: 28px;
+}
+
+#summary-price button {
+    width: 40%;
+    background-color: #ebbc69;
+    border-radius: 38px;
+    border: none;
+    padding: 12px 0 8px;
+    font-size: 38px;
+    font-weight: normal;
+    cursor: pointer;
+    color: white;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+    box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67);
+    text-shadow: 2px 2px 3px #000000;
+}
+
+/* --- VISSZA GOMB --- */
+#cart-div > div > button {
+    margin-top: 20px;
+    margin-left: 222px;
+    background-color: #ebbc69;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- MOBILBARÁT --- */
+@media (max-width: 900px) {
+    #cart-div{
+        margin: 0;
+    }
+    #cart-card {
+        flex-direction: column;
+        width: 90%;
+    }
+    #cart-summary{
+        border: 4px solid black;
+        border-radius: 0;
+        border-top: 2px solid black;
+        margin: 0 25px;
+    }
+    #cart-list{
+        width: auto;
+        margin: 0 25px;
+        border: 4px solid black;
+        border-radius: 0;
+        border-bottom: 2px solid black
+    }
+
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cart-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .remove {
+        align-self: flex-end;
+    }
+}
