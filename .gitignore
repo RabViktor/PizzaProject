@@ -1,0 +1,35 @@
+# Node.js
+node_modules/
+.env
+.env.local
+.env.development
+.env.production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+.vite/
+
+# Supabase CLI
+supabase/.temp/
+supabase/.branches/
+supabase/.config/
+
+# OS fájlok
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Tesztelés
+coverage/
+
+# Lock fájlok (ha nem akarod verziózni)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
