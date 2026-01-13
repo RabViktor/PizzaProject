@@ -2,10 +2,10 @@ import './App.css'
 import { Nav } from './components/Nav';
 // import { ProductList } from './pages/ProductList'
 import { Routes, Route } from "react-router-dom";
-// import { Home } from './pages/Home'
+import { Home } from './pages/Home'
 // import { Details } from './pages/Details';
 // import { Contact } from './pages/Contact';
-// import { Footer } from './components/Footer';
+import { Footer } from './components/Footer';
 // import { Login } from './pages/Login';
 // import { Registration } from './pages/Registration';
 // import { NotFound } from './pages/NotFound';
@@ -16,7 +16,7 @@ function App() {
     <>
       <Nav/>
       <Routes>
-        {/* <Route path='/' element={<Home/>}/> */}
+        <Route path='/' element={<Home/>}/>
         {/* <Route path='/menu' element={<ProductList/>}/>
         <Route path='/menu/details/:id' element={<Details/>}/>
         <Route path='/contact' element={<Contact/>}/>
@@ -25,7 +25,7 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path='*' element={<NotFound/>}/> */}
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   )
 }
