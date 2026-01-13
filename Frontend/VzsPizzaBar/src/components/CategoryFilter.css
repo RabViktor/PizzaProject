@@ -1,0 +1,11 @@
+.category-div{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 40px ;
+    margin-top: 40px;
+}
+
+.category-btn{
+    font-size: 30px;
+}
