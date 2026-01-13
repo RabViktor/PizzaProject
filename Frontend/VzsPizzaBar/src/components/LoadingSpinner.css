@@ -1,0 +1,25 @@
+.spinner-div{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-spinner{
+    width: 50px;
+    height: 50px;
+    border: calc(50px / 7) solid #F3E5BE;
+    border-top-color: #BC271C;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(1turn);
+    }
+}
