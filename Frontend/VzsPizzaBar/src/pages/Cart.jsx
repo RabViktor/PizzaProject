@@ -1,11 +1,13 @@
 import './Cart.css'
 import { useCart } from '../context/CartContext'
+import { useNavigate } from 'react-router-dom'
 
 export function Cart(){
     const { cartItems, increase, decrease, remove } = useCart();
 
     const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity,0);
-    const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+    const navi = useNavigate()
 
 
 
@@ -38,7 +40,10 @@ export function Cart(){
                                     
                                 </div>
                             ))}
-                        </div> 
+                        </div>
+                        <div id='back-to-menu'>
+                            <button onClick={() => navi('/menu')}>Vissza az étlapra</button>
+                        </div>
                     </div>
                     <div id="cart-summary">
                         <div id="summary-text">
