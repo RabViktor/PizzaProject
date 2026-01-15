@@ -32,6 +32,8 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #cart-text{
@@ -60,6 +62,7 @@
     padding-right: 10px;
     max-height: 600px;
     overflow-y: auto;
+    flex-grow: 1; 
 }
 
 #cart-products::-webkit-scrollbar {
@@ -290,20 +293,31 @@ span {
 }
 
 /* --- VISSZA GOMB --- */
-#cart-div > div > button {
+#back-to-menu {
+    margin-top: auto;          
+    display: flex;
+    justify-content: left;
+}
+
+#back-to-menu button{
     margin-top: 20px;
-    margin-left: 222px;
     background-color: #ebbc69;
     border: 3px solid black;
-    border-radius: 10px;
-    padding: 12px 25px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
+    color: #fff;
+    border-radius: 28px;
+    padding: 12px 25px 8px;
+    font-size: 35px;
+    font-weight: normal;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 3px #000000;
 }
 
 /* --- MOBILBARÁT --- */
 @media (max-width: 900px) {
+    #back-to-menu{
+        justify-content: center;
+    }
     #cart-div{
         margin: 0;
     }

@@ -78,11 +78,11 @@ export function Login(){
                         <NavLink to={"/registration"} style={{textDecoration:"none"}}><p className="login-to-reg">Nincs fiókod? Regisztrálj!</p></NavLink>
                     </div>
                 </form>
-                
-                
-            </div>
-           
 
+
+            </div>
+
+            
         </>
     )
 }
