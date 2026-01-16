@@ -1,3 +1,4 @@
+import { ProfileInfo } from "../components/ProfileInfo"
 import "./Profile.css"
 import { useState } from "react"
 
@@ -22,9 +23,7 @@ export function Profile(){
                 </button>
             </div>
             <div id="profile-div">
-                <div id="profile-card">
-
-                </div>
+                {activeTab === "profile" && <ProfileInfo/>}
             </div>
         </>
     )

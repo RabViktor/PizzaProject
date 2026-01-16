@@ -1,0 +1,78 @@
+#profile-info-card{
+    width: 70%;
+    max-width: 900px;
+    background-color: #BC271C;
+    padding: 25px;
+    border-radius: 17px;
+    border: 3px solid black;
+}
+#profile-header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#profile-header h2{
+    color: #fff;
+    font-size: 48px;
+    padding-top: 15px;
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: black;
+}
+#profile-line{
+    width: 80%;
+    height: 3px;
+    background-color: black;
+}
+
+#profile-and-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#profile-and-img img{
+    width: 32px;
+    height: 32px;
+    padding-top: 6px;
+    cursor: pointer;
+}
+
+#profile-datas{
+    padding-top: 50px;
+    width: 80%;
+    max-width: 1200px;
+}
+#data-div{
+    display: flex;
+    justify-content: center;
+}
+.data{
+    display: flex;
+    justify-content: space-between;
+}
+.data h3{
+    color: #fff;
+    font-size: 35px;
+}
+#save-div{
+    display: flex;
+    justify-content: center;
+}
+#save-div button{
+    font-size: 33px;
+    border-radius: 18px;
+    padding: 10px 18px 6px;
+    background-color: #EBBC69;
+    border: 3px solid black;
+}
+
+#profile-del button{
+    font-size: 33px;
+    border-radius: 28px;
+    padding: 10px 18px 6px;
+    background-color: #BC271C;
+    color: #F3E5BE;
+    border: 3px solid black;
+}
