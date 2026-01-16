@@ -1,7 +1,12 @@
-import { NavLink } from "react-router-dom"
 import "./Registration.css"
+import { useCart } from '../context/CartContext'
+import { useNavigate } from "react-router-dom";
 
 export function Registration(){
+
+    const { showToast } = useCart()
+
+    const navi = useNavigate()
 
     const send = async (e) => {
         e.preventDefault();
@@ -18,17 +23,17 @@ export function Registration(){
 
         
         if (!accepted) {
-            alert("Fogadd el a feltételeket!");
+            showToast("Fogadd el a feltételeket!")
             return;
         }
 
         if (!name || !email || !phonePrefix || phonePrefix === "none" || !phoneNumber) {
-            alert("Minden mezőt tölts ki!");
+            showToast("Minden mezőt tölts ki!")
             return;
         }
 
         if (password !== passwordAgain) {
-            alert("A két jelszó nem egyezik!");
+            showToast("A két jelszó nem egyezik!")
             return;
         }
 
@@ -49,14 +54,15 @@ export function Registration(){
             const data = await res.json();
 
             if (!res.ok) {
-                alert("Hiba: " + data.error);
+                showToast(`Hiba: ${data.error}`)
                 return;
             }
 
-            alert("Sikeres regisztráció!");
+            showToast("Sikeres regisztráció!")
+            navi('/')
 
         } catch (err) {
-            alert("Hálózati hiba történt!");
+            showToast("Hálózati hiba történt!")
             console.error(err);
         }
     };
