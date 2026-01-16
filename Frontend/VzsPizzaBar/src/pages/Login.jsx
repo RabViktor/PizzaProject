@@ -29,7 +29,7 @@ export function Login(){
                 const data = await res.json()
 
                 if(!res.ok){
-                    showToast(`Hiba: ${data.error}`)
+                    showToast(`Hibás jelszó vagy email cím!`)
                     return
                 }
 
