@@ -7,7 +7,7 @@ export function Footer(){
             <div className="footer-line"></div>
             <footer>
                 <div className="logo-div">
-                    <img className="logo-footer" src="./logo.png" alt="vzsLogo" />
+                    <img className="logo-footer" src="/logo.png" alt="vzsLogo" />
                 </div>
 
                 <div className="informations">
@@ -44,9 +44,9 @@ export function Footer(){
                 </div>
 
                 <div className="logos">
-                    <NavLink> <img className="social-logo" src="./fb.png" alt="facebook logo" /> </NavLink>
-                    <NavLink> <img className="social-logo" src="./insta.png" alt="instagram logo" /> </NavLink>
-                    <NavLink> <img className="social-logo" src="./tiktok.png" alt="tiktok logo" /> </NavLink>
+                    <NavLink> <img className="social-logo" src="/fb.png" alt="facebook logo" /> </NavLink>
+                    <NavLink> <img className="social-logo" src="/insta.png" alt="instagram logo" /> </NavLink>
+                    <NavLink> <img className="social-logo" src="/tiktok.png" alt="tiktok logo" /> </NavLink>
                     
                     
                 </div>
