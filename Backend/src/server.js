@@ -15,6 +15,7 @@ app.use("/api/products", productsRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/profile", profileRoutes)
 
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
     console.log(`Backend fut a ${PORT} porton`)

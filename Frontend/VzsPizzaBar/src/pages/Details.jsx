@@ -1,3 +1,4 @@
+import './Details.css'
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -12,9 +13,6 @@ export function Details({param}){
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
-    const sauces = ["BBQ", "Curry-Mangó", "Édes-Savanyú", "Ketchup", "Majonéz", "Salsa"];
-    const [selectedSauces, setSelectedSauces] = useState([]);
 
     const nav = useNavigate();
 
@@ -39,71 +37,31 @@ export function Details({param}){
         leker();
     }, [id]);
 
-
-    const toggleSauce = (sauce) => {
-        if (!product) return;
-        const maxSelection = (product.price === 3300 || product.price === 3500) ? 2 : 1;
-        if (selectedSauces.includes(sauce)) {
-            setSelectedSauces(selectedSauces.filter((s) => s !== sauce));
-        } else {   
-            if (selectedSauces.length < maxSelection) {
-                setSelectedSauces([...selectedSauces, sauce]);
-            }
-        }
-    }
-
     return (
         <>
             {loading && <LoadingSpinner/>}
-            {error && <p>Hiba: {error}</p>}
+            {error && <h2>Hiba: {error}</h2>}
             {product && (
-            <div style={{width:"70%", margin: "auto", marginTop:"70px", display: "flex", justifyContent:"space-between", flexDirection:"row"}} key={product.id}>
-                <div>
-                    <button onClick={() => nav("/menu")}>Vissza</button>
-                    <img style={{width:"500px"}} src={product.image} alt={product.name} />
-                </div>
-                <div>
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-
-                    {/* Szószválasztó csak chicken kategóriánál */}
-                    {product.category === "chicken" && (
-                    <div style={{ marginTop: "20px" }}>
-                        <h4>
-                        Válassz szószt (
-                        {(product.price === 3300 || product.price === 3500) ? 2 : 1} db)
-                        </h4>
-                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                        {sauces.map((sauce) => (
-                            <button
-                            key={sauce}
-                            onClick={() => toggleSauce(sauce)}
-                            style={{
-                                padding: "8px 12px",
-                                borderRadius: "5px",
-                                border: selectedSauces.includes(sauce)
-                                ? "2px solid blue"
-                                : "1px solid gray",
-                                backgroundColor: selectedSauces.includes(sauce)
-                                ? "lightblue"
-                                : "white",
-                                cursor: "pointer",
-                            }}
-                            >
-                            {sauce}
-                            </button>
-                        ))}
+            <div id='product-div' key={product.id}>
+                <div id="product-card">
+                    <button onClick={() => nav("/menu")}>
+                        <img src="/back.png" alt="vissza" />
+                    </button>
+                    <div>
+                        <div id='left-content'>
+                            <img id='product-image' src={product.image} alt={product.name} />
                         </div>
-                        <p>Kiválasztott szósz(ok): {selectedSauces.join(", ") || "nincs"}</p>
+                        <div id='right-content'>
+                            <h2>{product.name}</h2>
+                            <p>{product.description}</p>
+                            <p>Ár: {product.price} Ft</p>
+                            <button onClick={() => {
+                                addToCart(product)
+                                showToast("Sikeresen hozzáadva a kosárhoz!")
+                            }}>Kosárba</button>
+                        </div>
                     </div>
-                    )}
-                    <p>Ár: {product.price} Ft</p>
-                    <button onClick={() => {
-                                    addToCart(product)
-                                    showToast("Sikeresen hozzáadva a kosárhoz!")
-                                }}>Kosárba</button>
                 </div>
-                
             </div>
             )}
         </>

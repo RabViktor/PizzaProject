@@ -69,7 +69,7 @@ export function Nav(){
                 <div className="navMiddle">
                     <NavLink to={"/cart"} className="menu">
                         <div style={{ position: "relative" }}>
-                            <img style={{ marginTop: "15px" }} src="./basket-cart-icon.png" alt="kosár" />
+                            <img style={{ marginTop: "15px" }} src="/basket-cart-icon.png" alt="kosár" />
                             {cartCount > 0 && (
                                 <span style={{fontWeight:"normal", position: "absolute", top: "0", right: "-15px", background: "red", color: "white", borderRadius: "50%", padding: "3px 10px 0px 10px", fontSize: "29px" }} >
                                     {cartCount}
@@ -86,7 +86,7 @@ export function Nav(){
                     <input type="text" placeholder="Keresés" />
                     <NavLink to={"/cart"} className={"menu"}>
                         <div style={{position:"relative"}}>
-                            <img style={{marginTop:"15px"}} src="./basket-cart-icon.png" alt="kosár" />
+                            <img style={{marginTop:"15px"}} src="/basket-cart-icon.png" alt="kosár" />
                             {cartCount > 0 && (
                                     <span style={{ fontWeight:"normal", position: "absolute", top: "0", right: "-15px", background: "red", color: "white", borderRadius: "50%", padding: "3px 10px 0px 10px", fontSize: "30px" }} >
                                         {cartCount}
