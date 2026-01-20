@@ -43,11 +43,11 @@ export function Details({param}){
             {error && <h2>Hiba: {error}</h2>}
             {product && (
             <div id='product-div' key={product.id}>
-                <div id="product-card">
+                <div id="product-helper">
                     <button onClick={() => nav("/menu")}>
                         <img src="/back.png" alt="vissza" />
                     </button>
-                    <div>
+                    <div id='product-card'>
                         <div id='left-content'>
                             <img id='product-image' src={product.image} alt={product.name} />
                         </div>
