@@ -20,12 +20,23 @@ export function Nav(){
         }
     }
 
-    const logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+    const logout = async () => {
+        const token = localStorage.getItem("token")
+
+        await fetch("http://localhost:5000/api/auth/logout", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+
         navi("/");
-        window.location.reload();
-    };
+        window.location.reload()
+    }
+
 
     const toggleMenu = () => {
         if (open) {

@@ -53,5 +53,18 @@ router.post("/login", async (req, res) => {
     }); 
 });
 
+router.post("/logout", async (req, res) => {
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+        return res.status(400).json({ error: "Nincs token" });
+    }
+
+    await supabase.auth.signOut();
+
+    return res.json({ message: "Kijelentkezve" });
+});
+
+
 
 export default router;
