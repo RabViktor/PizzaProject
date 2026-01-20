@@ -1,18 +1,19 @@
 import { supabase } from "../supabase.js";
 
-export async function authMiddleware(req, res, next) {
-    const token = req.headers.authorization?.split(" ")[1];
+export async function authMiddleware(req, res, next){
+    const token = req.headers.authorization?.split(" ")[1]
 
-    if (!token) {
-        return res.status(401).json({ error: "Nincs token" });
+    if(!token){
+        return res.status(401).json({error: "Nincs token"})
     }
 
-    const { data, error } = await supabase.auth.getUser(token);
+    const { data, error } = await supabase.auth.getUser(token)
 
-    if (error) {
-        return res.status(401).json({ error: "Érvénytelen token" });
+    if(error){
+        return res.status(401).json({error: "Érvénytelen token"})
     }
 
-    req.user = data.user;
-    next();
+
+    req.user = data.user
+    next()
 }

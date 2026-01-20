@@ -21,10 +21,11 @@ router.get("/me", authMiddleware, async (req, res) => {
 })
 
 router.put("/update", authMiddleware, async (req, res) => {
-    const userId = req.user.id
-    const { name, phone, postcode, city, roadnum, email, password } = req.body
+    const userId = req.user.id;
+    const { name, phone, postcode, city, roadnum, email } = req.body;
 
-    const { data, error } = await supabase
+    // 1) USERS tábla frissítése
+    const { data: userData, error: userErr } = await supabase
         .from("users")
         .update({
             name,
@@ -36,14 +37,27 @@ router.put("/update", authMiddleware, async (req, res) => {
         })
         .eq("id", userId)
         .select()
-        .single()
+        .single();
 
-    if (error) {
-        return res.status(500).json({ error: error.message })
+    if (userErr) {
+        return res.status(500).json({ error: userErr.message });
     }
 
-    res.json(data)
+    // 2) AUTH email frissítése
+    const { data: authData, error: authErr } = await supabase.auth.updateUser({
+        email: email
+    });
+
+    if (authErr) {
+        return res.status(400).json({ error: authErr.message });
+    }
+
+    return res.json({
+        message: "Profil és email frissítve",
+        user: userData
+    });
 });
+
 
 
 export default router

@@ -17,11 +17,12 @@ export function ProfileInfo(){
         postcode: "",
         city: "",
         roadnum: ""
-    })
+    });
+
 
     const fields = [
         {key: "name", label: "Név", editable: true },
-        {key: "email", label: "E-mail", editable: true},
+        {key: "email", label: "E-mail", editable: false},
         {key: "phone", label: "Tel.szám" , editable: true},
         {key: "postcode", label: "Irányító sz." , editable: true},
         {key: "city", label: "Település" , editable: true},
@@ -73,6 +74,7 @@ export function ProfileInfo(){
             }
 
             const data = await res.json()
+
             setActiveBtn(false)
             showToast('Sikeres mentés')
 
@@ -100,7 +102,7 @@ export function ProfileInfo(){
                                 <div className="data" key={a.key}>
                                     <h3>{a.label}:</h3>
                                     {activeBtn && a.editable ? (
-                                        <input type="text"
+                                        <input className='profile-input' type="text"
                                             value={profile[a.key] || ""}
                                             onChange={e => {
                                                 setProfile({...profile, [a.key]: e.target.value})

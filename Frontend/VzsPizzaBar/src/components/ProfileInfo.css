@@ -76,3 +76,11 @@
     color: #F3E5BE;
     border: 3px solid black;
 }
+
+.profile-input{
+    font-size: 30px;
+    width: 35%;
+    border-radius: 18px;
+    padding: 5px 0 0 15px;
+    margin-bottom: 5px;
+}
