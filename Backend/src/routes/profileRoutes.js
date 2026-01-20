@@ -1,6 +1,6 @@
 import express from "express"
-import { supabase } from "../supabase.js";
-import { authMiddleware } from "../middleware/authMiddleware.js";
+import { supabase } from "../supabase.js"
+import { authMiddleware } from "../middleware/authMiddleware.js"
 
 const router = express.Router()
 
@@ -21,8 +21,8 @@ router.get("/me", authMiddleware, async (req, res) => {
 })
 
 router.put("/update", authMiddleware, async (req, res) => {
-    const userId = req.user.id;
-    const { name, phone, postcode, city, roadnum } = req.body;
+    const userId = req.user.id
+    const { name, phone, postcode, city, roadnum, email, password } = req.body
 
     const { data, error } = await supabase
         .from("users")
@@ -31,17 +31,18 @@ router.put("/update", authMiddleware, async (req, res) => {
             phone,
             postcode,
             city,
-            roadnum
+            roadnum,
+            email
         })
         .eq("id", userId)
         .select()
-        .single();
+        .single()
 
     if (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message })
     }
 
-    res.json(data);
+    res.json(data)
 });
 
 
