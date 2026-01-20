@@ -97,6 +97,7 @@ export function Nav(){
                             <img
                                 src="/profile-icon.jpg"
                                 alt="Profil"
+                                onClick={() => navi('/profile')}
                                 
                                 style={{
                                     width: "60px",
@@ -131,6 +132,7 @@ export function Nav(){
                                 <img
                                     src="/profile-icon.jpg"
                                     alt="Profil"
+                                    onClick={() => navi('/profile')}
                                     
                                     style={{
                                         width: "60px",
