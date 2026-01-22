@@ -1,0 +1,33 @@
+.qty-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+.qty-container span{
+    color: white;
+    font-weight: normal;
+    font-size: 33px;
+}
+
+.qty-btn {
+    padding: 6px 10px 3px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 3px solid black;
+    background-color: #EBBC69;
+    transition: 0.2s ease;
+}
+
+.qty-btn:hover {
+    background-color: #d9a85c;
+}
+
+.qty-value {
+    font-size: 22px;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+}

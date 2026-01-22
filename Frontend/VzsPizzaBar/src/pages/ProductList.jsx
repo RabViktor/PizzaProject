@@ -70,7 +70,19 @@ export function ProductList(){
                             </Link>
                             <div className="valami" style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
                                 <button id="addToCartBtn" onClick={() => {
-                                    addToCart(product)
+                                    if(product.category === "pizza"){
+                                        addToCart({
+                                            ...product,
+                                            size: "28",
+                                            price:product.price,
+                                            quantity: 1
+                                        })
+                                    }else{
+                                        addToCart({
+                                            ...product,
+                                            quantity: 1
+                                        })
+                                    }
                                     showToast("Sikeresen hozzáadva a kosárhoz!")
                                 }}>Kosárba</button>
                                 <h2>{product.price} Ft</h2>
