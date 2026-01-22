@@ -4,17 +4,30 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LoadingSpinner } from "../components/LoadingSpinner"
 import { useCart } from "../context/CartContext"
+import { QuantitySelector } from '../components/QuantitySelector'
+import { PizzaSizeSelector } from '../components/PizzaSizeSelector'
 
 export function Details({param}){
     const {id} = useParams()
 
-    const {addToCart, showToast}= useCart()
+    const {addToCart, showToast} = useCart()
+
+    const [category, setCategory] = useState(null)
+
+    const [quantity, setQuantity] = useState(1)
+    const [selectedSize, setSelectedSize] = useState(null)
     
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     const nav = useNavigate();
+
+    const finalPrice = product && selectedSize
+        ? product.price + selectedSize.extra
+        : product?.price
+
+
 
     useEffect(() => {
         const leker = async () => {
@@ -27,6 +40,7 @@ export function Details({param}){
 
                 const data = await res.json();
                 setProduct(data);
+                setCategory(data.category);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -44,8 +58,8 @@ export function Details({param}){
             {product && (
             <div id='product-div' key={product.id}>
                 <div id="product-helper">
-                    <button onClick={() => nav("/menu")}>
-                        <img src="/back.png" alt="vissza" />
+                    <button id='back-button' onClick={() => nav("/menu")}>
+                        <img id='back-image' src="/back.png" alt="vissza" />
                     </button>
                     <div id='product-card'>
                         <div id='left-content'>
@@ -54,11 +68,43 @@ export function Details({param}){
                         <div id='right-content'>
                             <h2>{product.name}</h2>
                             <p>{product.description}</p>
-                            <p>Ár: {product.price} Ft</p>
-                            <button onClick={() => {
-                                addToCart(product)
-                                showToast("Sikeresen hozzáadva a kosárhoz!")
-                            }}>Kosárba</button>
+
+                            {category === "pizza" && (
+                                <PizzaSizeSelector 
+                                    selectedSize={selectedSize} 
+                                    onChange={setSelectedSize}
+                                />
+                            )}
+
+                            <QuantitySelector value={quantity} onChange={setQuantity} />
+
+                            <div id='btn-price'>
+                                <button
+                                    onClick={() => {
+                                        if (category === "pizza" && !selectedSize) {
+                                            showToast("Válassz méretet!");
+                                            return;
+                                        }
+
+                                        const itemToAdd = {
+                                            ...product,
+                                            quantity,
+                                            price: finalPrice
+                                        };
+
+                                        if (category === "pizza") {
+                                            itemToAdd.size = selectedSize.value;
+                                        }
+
+                                        addToCart(itemToAdd);
+                                        showToast("Sikeresen hozzáadva a kosárhoz!");
+                                    }}
+                                >
+                                    Kosárba
+                                </button>
+
+                                <p>{finalPrice} Ft</p>
+                            </div>
                         </div>
                     </div>
                 </div>

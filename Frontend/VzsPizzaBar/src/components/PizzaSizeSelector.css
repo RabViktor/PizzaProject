@@ -1,0 +1,40 @@
+.size-container{
+    display: flex; 
+    flex-direction: row;
+    gap: 25px;
+}
+.size-buttons{
+    display: flex;
+    gap: 25px;
+}
+.size-container span{
+    color: white;
+    font-weight: normal;
+    font-size: 33px;
+}
+.size-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.size-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: bold;
+}
+
+
+.size-option input[type="radio"] {
+    margin-bottom: 5px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.size-option input[type="radio"]:checked + span {
+    color: #F3e5BE;
+}
