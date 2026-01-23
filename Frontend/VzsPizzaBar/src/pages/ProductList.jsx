@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { CategoryFilter } from "../components/CategoryFilter";
 import "./ProductList.css"
 import { LoadingSpinner } from "../components/LoadingSpinner";
@@ -10,9 +10,15 @@ export function ProductList(){
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [selectedCategory, setSelectedCategory] = useState("pizza");
+
+    const [searchParams] = useSearchParams()
+    const urlCategory = searchParams.get("category")
+
+    const [selectedCategory, setSelectedCategory] = useState(urlCategory || "pizza");
 
     const {addToCart, showToast} = useCart()
+
+    
 
     useEffect(() => {
         const leker = async () => {
@@ -53,7 +59,7 @@ export function ProductList(){
                 {products && (
                 products.map(product => (
                         <div key={product.id} style={{width:"250px", backgroundColor:"#BC271C", padding:"13px", borderRadius:"7px", border:"4px solid black"}}>
-                            <Link style={{ textDecoration: "none", color: "black" }} to={`/menu/details/${product.id}`}>
+                            <Link style={{ textDecoration: "none", color: "black" }} to={`/menu/details/${product.id}?category=${selectedCategory}`}>
                                 <div className="boxka">
                                     <div style={{display:"flex", justifyContent:"center"}}>
                                         <img 

@@ -1,6 +1,6 @@
 import './Details.css'
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LoadingSpinner } from "../components/LoadingSpinner"
 import { useCart } from "../context/CartContext"
@@ -11,6 +11,9 @@ export function Details({param}){
     const {id} = useParams()
 
     const {addToCart, showToast} = useCart()
+
+    const [searchParams] = useSearchParams()
+    const fromCategory = searchParams.get('category')
 
     const [category, setCategory] = useState(null)
 
@@ -58,7 +61,7 @@ export function Details({param}){
             {product && (
             <div id='product-div' key={product.id}>
                 <div id="product-helper">
-                    <button id='back-button' onClick={() => nav("/menu")}>
+                    <button id='back-button' onClick={() => nav(`/menu?category=${fromCategory}`)}>
                         <img id='back-image' src="/back.png" alt="vissza" />
                     </button>
                     <div id='product-card'>
