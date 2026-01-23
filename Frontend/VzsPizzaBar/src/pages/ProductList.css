@@ -50,6 +50,9 @@ p{
     margin-right: 8px;
     margin-bottom: 6px;
 }
+#addToCartBtn:hover{
+    background-color: #d9a85c;
+}
 
 .valami h2{
     color: #fff;
