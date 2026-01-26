@@ -100,7 +100,7 @@ export function Nav(){
                     {!user ? (
                         <>
                             <button onClick={() => navi("/login")} className="loginBtn" style={{backgroundColor:"#F3E5BE"}}>Belépés</button>
-                            <button onClick={() => navi("/registration")} className="regBtn" style={{backgroundColor:"#EBBC69"}}>Regisztráció</button>
+                            <button onClick={() => navi("/registration")} className="regBtn">Regisztráció</button>
                         </>
                     ) : (
                         <>
@@ -135,7 +135,7 @@ export function Nav(){
                         {!user ? (
                             <>
                                 <button onClick={() => navi("/login")} className="loginBtn" style={{ backgroundColor: "#F3E5BE" }}>Belépés</button>
-                                <button onClick={() => navi("/registration")} className="regBtn" style={{ backgroundColor: "#EBBC69" }}>Regisztráció</button>
+                                <button onClick={() => navi("/registration")} className="regBtn">Regisztráció</button>
                             </>
                         ) : (
                             <>
