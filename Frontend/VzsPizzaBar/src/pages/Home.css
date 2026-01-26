@@ -1,0 +1,116 @@
+.hero{
+    height: 630px;
+    background-image: url("/background.png");
+    background-size: cover;
+    background-position: left center;
+    margin-top: -20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.hero-logo{
+    width: 400px;
+}
+.hero-content h1{
+    font-size: 128px;
+    color: #f3e5be;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 3px #000000;
+}
+.hero-content p{
+    font-size: 95px;
+    color: #ebbc69;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 3px #000000;
+    margin-top: -40px;
+}
+.hero-content button{
+    font-size: 50px;
+    padding: 5px 25px 0px 25px;
+    letter-spacing: 1px;
+    border-radius: 80px;
+    background-color: #BC271C;
+    color: #f3e5be;
+    -webkit-text-stroke-width: 0.9px;
+    -webkit-text-stroke-color: black;
+    font-weight: normal;
+    text-shadow: 2px 2px 7px #000000;
+    border: none;
+    -webkit-box-shadow: 3px 5px 37px 9px #000000; 
+    box-shadow: 3px 5px 37px 9px #000000;
+}
+
+@media (max-width: 1510px) {
+    .hero-logo{
+        display: none;
+    }
+}
+@media (max-width: 1100px){
+    .hero-content h1{
+        font-size: 100px;
+    }
+    .hero-content p{
+        font-size: 75px;
+    }
+    .hero-content button{
+        width: auto;
+        font-size: 38px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+@media (max-width:570px){
+    .hero{
+        justify-content: center;
+    }
+    .hero-content h1{
+        font-size: 80px;
+    }
+    .hero-content p{
+        font-size: 50px;
+        margin-top: -25px;
+    }
+}
+.section-category{
+    background-color: #BC271C;
+    max-width: 1500px;
+    width: 100%;
+    margin: auto;
+    margin-top: 35px;
+    border-radius: 18px;
+    text-align: center;
+    border: 3px solid black;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.category-card{
+    background-color: #ebbc69;
+    border-radius: 8px;
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.category-card:hover{
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.category-card img {
+    width: 100%; 
+    height: 150px;
+    width: 150px; 
+    object-fit: cover; 
+    border: 2px solid black; 
+    border-radius: 8px; 
+    margin-top: 15px;
+}
+.category-card button{
+    margin-bottom: 15px;
+}
