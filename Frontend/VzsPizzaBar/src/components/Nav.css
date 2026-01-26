@@ -92,6 +92,14 @@ nav{
     -webkit-box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67); 
     box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67);
 }
+.regBtn{
+  background-color: #EBBC69;
+}
+
+.regBtn:hover{
+  background-color: #d9a85c;
+}
+
 @media (max-width: 1070px) {
   nav {
     grid-template-columns: 1fr;

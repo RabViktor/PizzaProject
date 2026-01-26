@@ -91,7 +91,7 @@ export function Cart(){
                                         className='sum-items' 
                                         key={`${item.id}-${item.size}-sum`}
                                     >
-                                        <p>{item.name} –{} {item.size} cm</p>
+                                        <p>{item.name} {item.category === "pizza" ? `- ${item.size} cm` : ""}</p>
 
                                         <div id='sm-qp'>
                                             <p>{item.quantity} db</p>
