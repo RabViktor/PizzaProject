@@ -16,6 +16,7 @@ export function Home(){
                 <img className='hero-logo' src="/logo.png" alt="logo" />
             </section>
             <section className='section-category'>
+                <h1>Üdvözöljük a VZS PizzaBar weboldalán!</h1>
                 <h2>Kategóriák</h2>
                 <div className="category-grid">
                     <div className="category-card" onClick={() => navi('/menu?category=pizza')}>
