@@ -11,6 +11,7 @@ import { Registration } from './pages/Registration';
 import { NotFound } from './pages/NotFound';
 import { Cart } from './pages/Cart';
 import { Profile } from './pages/Profile';
+import { ProtectedRoute } from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -24,7 +25,11 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/profile' element={
+          <ProtectedRoute>
+            <Profile/>
+          </ProtectedRoute>
+        }/>
         <Route path='*' element={<NotFound/>}/> 
       </Routes>
       <Footer/>
