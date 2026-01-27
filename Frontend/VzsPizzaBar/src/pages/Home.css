@@ -143,3 +143,26 @@
     -webkit-box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67); 
     box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67);
 }
+.contact-content{
+    margin-top: 10px;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: -70px;
+}
+.contact-content button{
+    text-align: center;
+    border-radius: 80px;
+    font-size: 42px;
+    padding: 7px 45px 2px 45px;
+    background-color: #BC271C;
+    color: #f3e5be;
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: black;
+    font-weight: normal;
+    text-shadow: 2px 2px 2px #000000;
+    border: none;
+    -webkit-box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67); 
+    box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67);
+}

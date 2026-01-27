@@ -46,6 +46,12 @@ export function Home(){
                 </div>
             </section>
 
+            <section className='section-contact'>
+                <div className='contact-content'>
+                    <button>Lépj velünk kapcsolatba!</button>
+                </div>
+            </section>
+
         </>
     )
 }
