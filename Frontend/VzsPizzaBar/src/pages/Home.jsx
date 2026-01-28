@@ -48,7 +48,7 @@ export function Home(){
 
             <section className='section-contact'>
                 <div className='contact-content'>
-                    <button>Lépj velünk kapcsolatba!</button>
+                    <button onClick={() => navi('/contact')}>Lépj velünk kapcsolatba!</button>
                 </div>
             </section>
 
