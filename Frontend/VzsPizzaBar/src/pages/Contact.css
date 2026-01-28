@@ -2,13 +2,15 @@
     width: 240px;
     height: 240px;
     background-color: #bc271c;
-    border: 3px solid black;
-    border-radius: 7px;
+    border: 4px solid black;
+    border-radius: 20px;
 }
 .contact-cards{
     display: flex;
-    align-items: center;
+    justify-content: center;
     text-align: center;
+    gap: 50px;
+    margin-top: 60px;
 }
 .desc{
     color: white;
@@ -23,4 +25,13 @@
     -webkit-text-stroke-color: black;
     text-shadow: 1px 1px 1px #000000;
     font-size: 40px;
+    
+}
+.kep{
+    padding-top: 5px;
+    width: 80px;
+}
+.kepp{
+    padding-top: 5px;
+    width: 100px;
 }
