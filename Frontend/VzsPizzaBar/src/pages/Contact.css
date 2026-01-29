@@ -18,7 +18,7 @@
     -webkit-text-stroke-color: black;
     font-weight: normal;
     text-shadow: 1px 1px 1px #000000;
-    font-size: 30px;
+    font-size: 32px;
 }
 .con{
     -webkit-text-stroke-width: 0.6px;
@@ -34,4 +34,75 @@
 .kepp{
     padding-top: 5px;
     width: 100px;
+}
+.kepo{
+    padding-top: 5px;
+    width: 75px;
+}
+.contact-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+.contact-form{
+    margin-top: -60px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F3E5BE;
+    border-radius: 17px;
+    box-shadow: 0px 12px 23px -9 px rgba(0,0,0,0.67);
+    
+}
+.login-h2{
+    font-size: 48px;
+    padding: 25px;
+    color: #fff;
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 7px #000000;
+    margin-top: 20px;
+}
+.contact-form label{
+    color:#fff;
+    font-size: 40px;
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 7px #000000;
+}
+.contact-form input{
+    width: 500px;
+    padding: 8px 23px 4px 23px;
+    font-size: 33px;
+    border-radius: 40px;
+    border: none;
+    box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67); 
+    margin-bottom: 40px;
+}
+.con-btn{
+    background-color: #EBBC69;
+    border: none;
+    font-size: 40px;
+    border-radius: 17px;
+    color: white;
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 7px #000000;
+    padding: 15px 30px 10px 30px;
+    box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67); 
+    margin-bottom: 30px;
+}
+.mess{
+    margin-top: -40px;
+    height: 170px;
+    width: 530px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 12px 23px -9px rgba(0,0,0,0.67);
+    padding: 10px;
+    font-size: 33px; 
+    margin-bottom: 25px;
 }

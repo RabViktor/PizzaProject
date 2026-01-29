@@ -21,7 +21,7 @@ export function Footer(){
                     <span className="beige">
                         <h3>Telefonszám:</h3>
                     </span>
-                    <p>+36 12 34 56 789</p>
+                    <p>+36 70 123 4567</p>
 
                     <span className="beige">
                         <h3>E-mail:</h3>
