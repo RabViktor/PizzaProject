@@ -7,7 +7,7 @@ import { useCart } from "../context/CartContext"
 import { QuantitySelector } from '../components/QuantitySelector'
 import { PizzaSizeSelector } from '../components/PizzaSizeSelector'
 
-export function Details({param}){
+export function Details(){
     const {id} = useParams()
 
     const {addToCart, showToast} = useCart()

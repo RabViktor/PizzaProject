@@ -14,6 +14,60 @@ export function Cart(){
 
     return (
         <>
+            <section className='datas-section'>
+                <div className='main-card'>
+                    <h2 style={{color:"white"}}>Adatok</h2>
+                    <div className='main-card-line'></div>
+                    <section className='datas-card'>
+                        <div className='data-card'>
+                            <label htmlFor="name">Név:</label> <br />
+                            <input type="text" name='name' id='name'/>
+                        </div>
+                        <div className="data-card">
+                            <label htmlFor="phone">Telefonszám:</label> <br />
+                            <input type="number" name='phone' id='phone' />
+                        </div>
+                        <div className="data-card">
+                            <label htmlFor="email">E-mail:</label> <br />
+                            <input type="email" name='email' id='email' />
+                        </div>
+                        <div className="data-card">
+                            <label htmlFor="city">Település:</label> <br />
+                            <select name="city" id="city">
+                                <option value="none">Válassz!</option>
+                                <option value="szolnok">Szolnok</option>
+                                <option value="toszeg">Tószeg</option>
+                                <option value="szandaszolos">Szandaszőlős</option>
+                            </select>
+                        </div>
+                        <div className="data-card">
+                            <label htmlFor="roadNum">Utca/házszám:</label> <br />   
+                            <input type="text" name='roadNum' id='roadNum'/>
+                        </div>
+                        <div className="data-card">
+                            <label htmlFor="comment">Megjegyzés</label> <br />
+                            <input type="text" name='comment' id='comment' />
+                        </div>
+                        <div className="data-card">
+                            <label className="payment-label">Fizetési módok:</label>
+                            <div className="payment-options">
+                                <label className="payment-card">
+                                    <input type="radio" name="payment" value="card" /> 
+                                    <div className="payment-content">
+                                        <h3>Bankkártya (online)</h3>
+                                    </div>
+                                </label>
+                                <label className="payment-card">
+                                    <input type="radio" name="payment" value="cash" /> 
+                                    <div className="payment-content">
+                                        <h3>Készpénz (futárnál)</h3>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
             <div id='cart-div'>
                 <div id="cart-card">
                     <div id="cart-list">
