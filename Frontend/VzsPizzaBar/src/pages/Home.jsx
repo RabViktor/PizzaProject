@@ -10,7 +10,7 @@ export function Home(){
             <section className="hero">
                 <div className="hero-content">
                     <h1>VZS PizzaBar</h1>
-                    <p>Szolnok legjobb pizzái!</p>
+                    <p className='lpi'>Szolnok legjobb pizzái!</p>
                     <button onClick={() => navi('/menu')}>Rendelés</button>
                 </div>
                 <img className='hero-logo' src="/logo.png" alt="logo" />
