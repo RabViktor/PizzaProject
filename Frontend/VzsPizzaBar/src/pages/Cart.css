@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 #cart-card {
@@ -318,9 +318,6 @@ span {
     #back-to-menu{
         justify-content: center;
     }
-    #cart-div{
-        margin: 0;
-    }
     #cart-card {
         flex-direction: column;
         width: 90%;
@@ -352,4 +349,68 @@ span {
     .remove {
         align-self: flex-end;
     }
+}
+.datas-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0;
+}
+.main-card{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #BC271C;
+    border-radius: 17px;
+    border: 4px solid black;
+    padding: 25px;
+}
+.main-card h2{
+    font-size: 48px;
+}
+.main-card-line{
+    height: 4px;
+    background-color: #000000;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.datas-card{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    column-gap: 70px;
+    row-gap: 20px;
+    max-width: 1200px;
+}
+.payment-card{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.data-card input{
+    border-radius: 25px;
+    font-size: 30px;
+    padding-left: 15px;
+    padding-top: 5px;
+    max-width: 220px;
+    border: none;
+}
+.data-card select{
+    border-radius: 25px;
+    font-size: 30px;
+    padding-left: 15px;
+    padding-top: 5px;
+    max-width: 220px;
+    border: none;
+}
+.data-card label{
+    font-size: 38px;
+    color: #fff;
+    text-shadow: 2px 2px 7px #000000;
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: black;
+}
+.payment-content h3{
+    font-size: 30px;
+    -webkit-text-stroke-width: 0.3;
 }
