@@ -1,0 +1,37 @@
+.success-div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.success-div button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 38px;
+    padding: 7px 25px 0 25px;
+    border-radius: 28px;
+    border: 2px solid black;
+}
+
+.success-card{
+    text-align: center;
+}
+.success-img{
+    max-width: 200px;
+}
+.success-card h2{
+    font-size: 88px;
+    color: #44C4A1;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 3px #000000;
+}
+.success-card p{
+    color: black;
+    font-size: 45px;
+}
