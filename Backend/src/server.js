@@ -4,7 +4,7 @@ import cors from "cors"
 import productsRoute from "./routes/products.js"
 import authRoute from "./routes/auth.js"
 import profileRoutes from "./routes/profileRoutes.js"
-import checkoutRoutes from "./src/routes/checkout.js";
+import checkoutRoutes from "./routes/checkout.js";
 
 dotenv.config()
 
