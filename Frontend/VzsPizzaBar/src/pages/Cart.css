@@ -414,3 +414,18 @@ span {
     font-size: 30px;
     -webkit-text-stroke-width: 0.3;
 }
+.payment-content h3:hover{
+    cursor: pointer;
+}
+.payment-card input:hover{
+    cursor: pointer;
+}
+.error {
+    color: #ffb3b3;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.error-input {
+    border: 3px solid red !important;
+}
