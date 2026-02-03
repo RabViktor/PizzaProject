@@ -394,6 +394,7 @@ span {
     padding-top: 5px;
     max-width: 220px;
     border: none;
+    background-color: #F3E5BE;
 }
 .data-card select{
     border-radius: 25px;
@@ -402,6 +403,7 @@ span {
     padding-top: 5px;
     max-width: 220px;
     border: none;
+    background-color: #F3E5BE;
 }
 .data-card label{
     font-size: 38px;
@@ -422,10 +424,10 @@ span {
 }
 .error {
     color: #ffb3b3;
-    font-size: 24px;
+    font-size: 28px;
     margin-top: 5px;
 }
 
 .error-input {
-    border: 3px solid red !important;
+    border: 3px solid rgb(255, 0, 0) !important;
 }
