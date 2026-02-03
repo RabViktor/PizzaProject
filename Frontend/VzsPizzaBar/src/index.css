@@ -12,3 +12,9 @@ body{
 button:hover{
     cursor: pointer;
 }
+input{
+    background-color: #F3E5BE;
+}
+select{
+    background-color: #F3E5BE;
+}
