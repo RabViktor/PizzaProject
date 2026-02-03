@@ -75,3 +75,27 @@
     text-shadow: 2px 2px 7px #000000;
     padding-top: 20px; 
 }
+@media (max-width:660px){
+    .login-form{
+        width: 450px;
+    }
+    .login-form input{
+        width: 300px;
+    }
+     .login-form label{
+        font-size: 35px;
+    }
+    .login-h2{
+        font-size: 40px;
+    }
+    .login-btn{
+        font-size: 35px;
+    }
+    .forgot-pass p{
+        font-size: 25px;
+        margin-left: 15px;
+    }
+    .login-to-reg{
+        font-size: 25px;
+    }
+}

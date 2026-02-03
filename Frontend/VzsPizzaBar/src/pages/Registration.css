@@ -67,3 +67,25 @@
 .reg-btn:hover{
     background-color: #d9a85c;
 }
+@media (max-width:660px){
+    .reg-form{
+        width: 450px;
+    }
+    .reg-form input[type="text"],
+    .reg-form input[type="password"],
+    .reg-form input[type="number"]{
+        width: 300px;
+    }
+     .reg-form label{
+        font-size: 35px;
+    }
+    .reg-h2{
+        font-size: 40px;
+    }
+    .reg-btn{
+        font-size: 35px;
+    }
+    #phone-num{
+        font-size: 30px;
+    }
+}
