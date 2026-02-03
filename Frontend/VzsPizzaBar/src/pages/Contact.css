@@ -99,7 +99,7 @@
 }
 .mess{
     margin-top: -40px;
-    height: 170px;
+    height: 150px;
     width: 530px;
     border: none;
     border-radius: 30px;
@@ -107,4 +107,65 @@
     padding: 10px;
     font-size: 33px; 
     margin-bottom: 25px;
+}
+@media (max-width:660px){
+    .contact-cards{
+        margin-bottom: -50px;
+    }
+    .con{
+        font-size: 28px;
+    }
+    .desc{
+        font-size: 20px;
+    }
+    .contact-card{
+        width: 150px;
+        height: 190px;
+        margin: 3px;
+    }
+    .kep{
+        width: 60px;
+    }
+    .kepp{
+        width: 80px;
+    }
+    .kepo{
+        width: 55px;
+    }
+    .contact-cards{
+        gap: 20px;
+    }
+}
+
+@media (max-width:805px){
+    .contact-form{
+        margin: 2px;
+        width: 600px;
+    }
+}
+@media (max-width:605px){
+    .contact-form{
+        width: 500px;
+        
+    }
+    .contact-form input{
+        width: 400px;
+    }
+    .mess{
+        width: 425px;
+    }
+}
+@media (max-width:505px){
+    .contact-form{
+        width: 450px;
+    }
+     .contact-form input{
+        width: 350px;
+    }
+    .mess{
+        width: 375px;
+    }
+    .login-h2{
+        font-size: 10px;
+    }
 }
