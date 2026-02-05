@@ -118,3 +118,36 @@ p{
         font-size: 24px;
     }
 }
+.nonResultDiv{
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.nonResultDiv img{
+    max-width: 350px;
+    width: 100%;
+}
+.nonResultText{
+    font-size: 54px;
+    font-weight: normal;
+}
+.nonResultText span{
+    font-size: 54px;
+    color: #BC271C;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+    font-weight: normal;
+}
+.resultText{
+    font-size: 54px;
+    font-weight: normal;
+}
+.resultText span{
+    font-size: 54px;
+    font-weight: normal;
+    color: #BC271C;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+}

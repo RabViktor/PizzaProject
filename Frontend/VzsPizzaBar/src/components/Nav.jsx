@@ -2,10 +2,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./Nav.css"
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import { SearchBar } from "./SearchBar";
 
 export function Nav(){
 
     const navi = useNavigate();
+    const [search, setSearch] = useState("")
+
 
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -13,6 +16,14 @@ export function Nav(){
 
     const [open, setOpen] = useState(false)
     const [closing, setClosing] = useState(false);
+
+    const handleSearch = (e) => {
+        if (e.key === "Enter") {
+            navi(`/menu?search=${search}`)
+            setSearch("")
+        }
+    }
+
 
     const LinkStlye = ({isActive}) => {
         return {
@@ -83,7 +94,7 @@ export function Nav(){
                     <NavLink className={"menu"} style={LinkStlye} to={"/"}>Főoldal </NavLink>
                     <NavLink className={"menu"} style={LinkStlye} to={"/menu"}>Étlap</NavLink>
                     <NavLink className={"menu"} style={LinkStlye} to={"/contact"}>Kapcsolat</NavLink>
-                    <input type="text" placeholder="Keresés" />
+                    <SearchBar isMobile={false} />
                     <NavLink to={"/cart"} className={"menu"}>
                         <div style={{position:"relative"}}>
                             <img style={{marginTop:"15px"}} src="/basket-cart-icon.png" alt="kosár" />
@@ -131,7 +142,7 @@ export function Nav(){
                         <NavLink className={"menu"} style={LinkStlye} to={"/"} onClick={() => setOpen(false)}>Főoldal</NavLink>
                         <NavLink className={"menu"} style={LinkStlye} to={"/menu"} onClick={() => setOpen(false)}>Étlap</NavLink>
                         <NavLink className={"menu"} style={LinkStlye} to={"/contact"} onClick={() => setOpen(false)}>Kapcsolat</NavLink>
-                        <input type="text" placeholder="Keresés" />
+                        <SearchBar isMobile={true} />
                         {!user ? (
                             <>
                                 <button onClick={() => navi("/login")} className="loginBtn" style={{ backgroundColor: "#F3E5BE" }}>Belépés</button>
