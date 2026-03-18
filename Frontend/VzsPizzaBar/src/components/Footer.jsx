@@ -26,7 +26,7 @@ export function Footer(){
                     <span className="beige">
                         <h3>E-mail:</h3>
                     </span>
-                    <p>noreply@vzspizzabar.hu</p>
+                    <p>admin@vzspizzabar.hu</p>
 
                 </div>
 
