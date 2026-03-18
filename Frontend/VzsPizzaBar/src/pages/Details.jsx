@@ -6,6 +6,7 @@ import { LoadingSpinner } from "../components/LoadingSpinner"
 import { useCart } from "../context/CartContext"
 import { QuantitySelector } from '../components/QuantitySelector'
 import { PizzaSizeSelector } from '../components/PizzaSizeSelector'
+import { SauceSelector } from '../components/SauceSelector'
 
 export function Details(){
     const {id} = useParams()
@@ -19,6 +20,9 @@ export function Details(){
 
     const [quantity, setQuantity] = useState(1)
     const [selectedSize, setSelectedSize] = useState(null)
+
+    const [selectedSauces, setSelectedSauces] = useState([])
+
     
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -78,6 +82,9 @@ export function Details(){
                                     onChange={setSelectedSize}
                                 />
                             )}
+                            {category === "chicken" && (
+                                <SauceSelector price={product.price} onChange={setSelectedSauces}/>
+                            )}
 
                             <QuantitySelector value={quantity} onChange={setQuantity} />
 
@@ -86,6 +93,18 @@ export function Details(){
                                     onClick={() => {
                                         if (category === "pizza" && !selectedSize) {
                                             showToast("Válassz méretet!");
+                                            return;
+                                        }
+                                        
+                                        let sauceQuantity = 0
+                                        if(product.price > 3000){
+                                            sauceQuantity = 2
+                                        }else if(product.price < 3000){
+                                            sauceQuantity = 1
+                                        }
+                                        
+                                        if (category === "chicken" && selectedSauces.length != sauceQuantity) {
+                                            showToast(`Válassz ${sauceQuantity}db szószt!`);
                                             return;
                                         }
 
@@ -99,12 +118,17 @@ export function Details(){
                                             itemToAdd.size = selectedSize.value;
                                         }
 
+                                        if (category === "chicken") {
+                                            itemToAdd.sauces = selectedSauces;
+                                        }
+
                                         addToCart(itemToAdd);
                                         showToast("Sikeresen hozzáadva a kosárhoz!");
                                     }}
                                 >
                                     Kosárba
                                 </button>
+
 
                                 <p>{finalPrice} Ft</p>
                             </div>
