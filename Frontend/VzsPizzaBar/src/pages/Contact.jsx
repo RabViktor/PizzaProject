@@ -14,7 +14,7 @@ export function Contact(){
                 <div className="contact-card">
                     <img className="kepp" src="/mail.png" alt="" />
                     <p className="con">E-mail</p>
-                    <p className="desc">noreply@vzspizzabar.hu</p>
+                    <p className="desc">admin@vzspizzabar.hu</p>
                 </div>
                 <div className="contact-card">
                     <img className="kepo" src="/phone.png" alt="" />
