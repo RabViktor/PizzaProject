@@ -76,7 +76,7 @@ export function ProductList() {
             )}
 
             {loading && <LoadingSpinner />}
-            {error && <h2>{error}</h2>}
+            {error && <h2 className="menu-result-text">{error}</h2>}
 
             <div id="products-div">
 
