@@ -145,6 +145,7 @@ p{
     font-weight: normal;
 }
 .resultText{
+    text-align: center;
     font-size: 54px;
     font-weight: normal;
     text-align: center;
