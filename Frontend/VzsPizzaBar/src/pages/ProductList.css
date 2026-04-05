@@ -40,6 +40,10 @@ p{
     align-items: center;
 
 }
+.menu-result-text{
+    text-align: center;
+    font-size: 30px;
+}
 #addToCartBtn::before{
     content: ""; 
     display: inline-block; 
@@ -144,6 +148,7 @@ p{
     text-align: center;
     font-size: 54px;
     font-weight: normal;
+    text-align: center;
 }
 .resultText span{
     font-size: 54px;
