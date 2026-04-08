@@ -59,8 +59,6 @@ export function Cart(){
             return
         }
 
-        console.log("Minden adat rendben, mehet a fizetés!")
-
         const response = await fetch(
             "https://lrkftgsvfgbzrxqnbvdf.supabase.co/functions/v1/create-checkout",
             {
@@ -74,8 +72,12 @@ export function Cart(){
         )
 
         const data = await response.json();
-        window.location.href = data.url;
 
+        if(form.payment === "card"){
+            window.location.href = data.url;
+        }else{
+            navi("/success", {state: {method:"cash"}})
+        }
     }
 
 
