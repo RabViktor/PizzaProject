@@ -60,7 +60,7 @@ export function Cart(){
         }
 
         const response = await fetch(
-            "https://lrkftgsvfgbzrxqnbvdf.supabase.co/functions/v1/create-checkout",
+            "http://localhost:5000/api/create-checkout-session",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -72,11 +72,12 @@ export function Cart(){
         )
 
         const data = await response.json();
+        const orderNumber = data.orderNumber;
 
         if(form.payment === "card"){
             window.location.href = data.url;
         }else{
-            navi("/success", {state: {method:"cash"}})
+            navi("/success", {state: {method:"cash", orderNumber}})
         }
     }
 
