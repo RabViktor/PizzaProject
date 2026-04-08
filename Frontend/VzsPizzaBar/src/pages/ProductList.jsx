@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { CategoryFilter } from "../components/CategoryFilter";
 import "./ProductList.css";
 import { LoadingSpinner } from "../components/LoadingSpinner";
@@ -10,6 +10,8 @@ export function ProductList() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const navi = useNavigate();
 
     const [searchParams] = useSearchParams();
     const urlCategory = searchParams.get("category");
@@ -132,13 +134,18 @@ export function ProductList() {
                                             price: product.price,
                                             quantity: 1
                                         });
+                                        showToast("Sikeresen hozzáadva a kosárhoz!");
+                                        return;
+                                    }else if(product.category === "chicken"){
+                                        navi(`/menu/details/${product.id}?category=${selectedCategory}`)
                                     } else {
                                         addToCart({
                                             ...product,
                                             quantity: 1
                                         });
+                                        showToast("Sikeresen hozzáadva a kosárhoz!");
+                                        return;
                                     }
-                                    showToast("Sikeresen hozzáadva a kosárhoz!");
                                 }}
                             >
                                 Kosárba
