@@ -71,27 +71,25 @@ export function ProductList() {
                 />
             )}
 
-            {searchTerm && (
-                <h2 className="resultText">
+           {searchTerm && (
+                listToShow?.length > 0 ? (
+                    <h2 className="resultText">
                     Találatok a következőre: <span>{searchTerm}</span>
-                </h2>
-            )}
+                    </h2>
+                ) : (
+                    <div className="nonResultDiv">
+                    <img src="/magnifying-glass.png" alt="icon" />
+                    <h2 className="nonResultText">
+                        Nincs találat a következőre: <span style={{ color: "#BC271C" }}>{searchTerm}</span>
+                    </h2>
+                    </div>
+                )
+                )}
 
             {loading && <LoadingSpinner />}
             {error && <h2 className="menu-result-text">{error}</h2>}
 
             <div id="products-div">
-
-                {/* Nincs találat */}
-                {searchTerm && listToShow?.length === 0 && (
-                    <div className="nonResultDiv">
-                        <img src="/magnifying-glass.png" alt="icon" />
-                        <h2 className="nonResultText">
-                            Nincs találat a következőre: <span style={{ color: "#BC271C" }}>{searchTerm}</span>
-                        </h2>
-                    </div>
-                )}
-
                 {/* Találatok listázása */}
                 {listToShow && listToShow.length > 0 && listToShow.map(product => (
                     <div key={product.id} style={{
