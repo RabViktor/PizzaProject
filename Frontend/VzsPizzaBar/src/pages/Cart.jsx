@@ -3,9 +3,12 @@ import { useCart } from '../context/CartContext'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { useRef } from 'react';
+import {supabase} from '../supabaseClient'
+import { useEffect } from 'react';
 
 export function Cart(){
-    const { cartItems, increase, decrease, remove } = useCart();
+
+    const { cartItems, increase, decrease, remove, showToast } = useCart();
 
     const total = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -42,6 +45,16 @@ export function Cart(){
 
 
     const handleChekout = async () => {
+
+        const localUser = JSON.parse(localStorage.getItem("user"));
+
+        if (!localUser) {
+            showToast("A rendeléshez be kell jelentkezned!");
+            return;
+        }
+
+
+
         let newErrors = {};
 
         if (!form.name.trim()) newErrors.name = "A név megadása kötelező!"
@@ -60,18 +73,20 @@ export function Cart(){
         }
 
         const response = await fetch(
-            "http://localhost:5000/api/create-checkout-session",
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
+        "http://localhost:5000/api/create-checkout-session",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
                 items: cartItems,
-                customerData: form
-                })
-            }
-        )
-
+                customerData: {
+                    ...form,
+                    user_id: localUser.id
+                }
+            })
+        })
         const data = await response.json();
+
         const orderNumber = data.orderNumber;
 
         if(form.payment === "card"){
