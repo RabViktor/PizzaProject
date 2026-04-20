@@ -38,20 +38,37 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body; 
+
+    // 1) Supabase Auth login
     const { data, error } = await supabasePublic.auth.signInWithPassword({
         email,
         password 
     }); 
+
     if (error) {
         return res.status(400).json({ error: error.message }); 
     } 
-     
+
+    // 2) Lekérjük a role-t a saját users táblából
+    const { data: profile, error: profileError } = await supabase
+        .from("users")
+        .select("role")
+        .eq("id", data.user.id)
+        .single();
+
+    if (profileError) {
+        return res.status(500).json({ error: "Nem sikerült lekérni a jogosultságot" });
+    }
+
+    // 3) Visszaküldjük a role-t is
     res.json({ 
         message: "Sikeres bejelentkezés!", 
         session: data.session, 
-        user: data.user 
+        user: data.user,
+        role: profile.role
     }); 
 });
+
 
 router.post("/logout", async (req, res) => {
     const token = req.headers.authorization?.split(" ")[1];
