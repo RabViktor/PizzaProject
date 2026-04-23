@@ -5,6 +5,7 @@ import productsRoute from "./routes/products.js"
 import authRoute from "./routes/auth.js"
 import profileRoutes from "./routes/profileRoutes.js"
 import checkoutRoutes from "./routes/checkout.js";
+import adminRoutes from "./routes/admin.js";
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use("/api", checkoutRoutes);
 app.use("/api/products", productsRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/profile", profileRoutes)
+app.use("/api/admin", adminRoutes);
 
 
 const PORT = process.env.PORT || 5000

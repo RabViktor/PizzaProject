@@ -35,6 +35,7 @@ export function AdminLogin(){
                 localStorage.setItem("admin", JSON.stringify({
                    role: data.role,
                    user: data.user,
+                   token: data.token,
                    expiresAt
                 }));
                 console.log(data.user)

@@ -1,0 +1,65 @@
+.admin-nav {
+    width: 250px;
+    background: #222;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+/* Csukott állapot */
+.admin-nav.closed {
+    width: 70px;
+    padding: 20px 10px;
+}
+
+/* Felső rész (logo + toggle) */
+.admin-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+/* Toggle gomb */
+.admin-toggle {
+    background: none;
+    border: none;
+    color: #F3E5BE;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Logo */
+.admin-logo {
+    margin-bottom: 30px;
+}
+
+.admin-logo h1 {
+    font-size: 54px;
+    color: #F3E5BE;
+}
+
+/* Menü */
+.admin-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-menu li {
+    margin: 15px 0;
+}
+
+.admin-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 38px;
+}
+
+.admin-menu a.active {
+    color: #BC271C;
+    font-weight: bold;
+}
