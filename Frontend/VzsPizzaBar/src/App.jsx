@@ -18,6 +18,7 @@ import { AdminLogin } from './admin-panel/AdminLogin';
 import { AdminProtectedRoute } from './admin-panel/AdminProtectedRoute';
 import { Dashboard } from './admin-panel/Dashboard';
 import { AdminLayout } from './admin-panel/AdminLayout';
+import { Users } from './admin-panel/Users';
 
 function App() {
 
@@ -70,6 +71,13 @@ function App() {
           <AdminProtectedRoute>
             <AdminLayout>
               <Dashboard/>
+            </AdminLayout>
+          </AdminProtectedRoute>
+        }/>
+        <Route path='/admin-panel/users' element={
+          <AdminProtectedRoute>
+            <AdminLayout>
+              <Users/>
             </AdminLayout>
           </AdminProtectedRoute>
         }/>

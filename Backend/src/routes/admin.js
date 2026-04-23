@@ -111,5 +111,44 @@ router.get("/orders", async (req, res) => {
     }
 });
 
+// --------------------------------------
+// 4) FELHASZNÁLÓK LISTÁZÁSA
+// --------------------------------------
+router.get("/users", async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from("users")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+
+        res.json(data);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Hiba történt a felhasználók lekérésekor" });
+    }
+});
+
+
+router.put("/users/role", async (req, res) => {
+    const { id, role } = req.body;
+
+    const { error } = await supabase
+        .from("users")
+        .update({ role })
+        .eq("id", id);
+
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+
+    res.json({ message: "Szerep frissítve!" });
+});
+
+
 
 export default router;
