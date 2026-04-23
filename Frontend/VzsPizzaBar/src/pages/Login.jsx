@@ -79,12 +79,6 @@ export function Login() {
           </div>
         </div>
 
-        <div className="forgot-pass">
-          <NavLink style={{ textDecoration: "none" }}>
-            <p>Elfelejtett jelszó</p>
-          </NavLink>
-        </div>
-
         <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
           <button type="submit" className="login-btn">Belépés</button>
           <NavLink to={"/registration"} style={{ textDecoration: "none" }}>
