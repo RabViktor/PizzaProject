@@ -6,18 +6,17 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import "./Dashboard.css"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function Dashboard() {
-
+    const [orders, setOrders] = useState(null);
     const [stats, setStats] = useState(null);
     const [statusStats, setStatusStats] = useState(null);
 
-    useEffect(() => {
-        fetchStats();
-        fetchStatusStats();
-    }, []);
+    
 
     const fetchStats = async () => {
         const res = await fetch("http://localhost:5000/api/admin/stats");
@@ -25,14 +24,26 @@ export function Dashboard() {
         setStats(data);
     };
 
+    const fetchOrders = async () => {
+        const res = await fetch("http://localhost:5000/api/admin/orders");
+        const data = await res.json();
+        setOrders(data);        
+    }
+
     const fetchStatusStats = async () => {
         const res = await fetch("http://localhost:5000/api/admin/order-status-stats");
         const data = await res.json();
         setStatusStats(data);
     };
 
+    useEffect(() => {
+        fetchOrders();
+        fetchStats();
+        fetchStatusStats();
+    }, []);
+
     if (!stats || !statusStats) {
-        return <h2 style={{ padding: "20px" }}>Betöltés...</h2>;
+        return <LoadingSpinner/>;
     }
 
     const pieData = {
@@ -59,16 +70,11 @@ export function Dashboard() {
     };
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h1 style={{ fontSize: "48px", marginBottom: "30px" }}>Dashboard</h1>
+        <div className="dashboard-container">
+            <h1 className="dashboard-title">Dashboard</h1>
 
             {/* Statisztikai kártyák */}
-            <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-                gap: "20px",
-                marginBottom: "40px"
-            }}>
+            <div className="stat-grid">
                 <div className="stat-card">
                     <h2>Mai rendelések</h2>
                     <p>{stats.todayOrders}</p>
@@ -91,16 +97,11 @@ export function Dashboard() {
             </div>
 
             {/* Kördiagram */}
-            <div style={{
-                width: "500px",
-                background: "#fff",
-                padding: "20px",
-                borderRadius: "12px",
-                boxShadow: "0 0 15px rgba(0,0,0,0.2)"
-            }}>
-                <h2 style={{ marginBottom: "20px" }}>Rendelések megoszlása</h2>
+            <div className="pie-container">
+                <h2 className="pie-title">Rendelések megoszlása</h2>
                 <Pie data={pieData} />
             </div>
         </div>
     );
+
 }

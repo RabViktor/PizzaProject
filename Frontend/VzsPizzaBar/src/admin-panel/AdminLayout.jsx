@@ -1,4 +1,5 @@
 import { AdminNav } from "./AdminNav";
+import "./AdminLayout.css"
 
 export function AdminLayout({children}) {
     return(
