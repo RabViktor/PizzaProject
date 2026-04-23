@@ -21,11 +21,14 @@ import { AdminLayout } from './admin-panel/AdminLayout';
 import { Users } from './admin-panel/Users';
 import { Products } from './admin-panel/Products';
 import { Orders } from './admin-panel/Orders';
+import { CourierLogin } from './courier-panel/CourierLogin';
+import { CourierPanel } from './courier-panel/CourierPanel';
 
 function App() {
 
   const location = useLocation()
   const isAdminPage = location.pathname.startsWith("/admin-panel");
+  const isCourierPage = location.pathname.startsWith("/courier");
   useEffect(() => {
 
     if (location.pathname === "/success") { 
@@ -52,7 +55,7 @@ function App() {
 
   return (
     <>
-      {!hideLayout && !isAdminPage && <Nav />}
+      {!hideLayout && !isAdminPage && !isCourierPage&& <Nav />}
 
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -69,6 +72,8 @@ function App() {
           </ProtectedRoute>
         }/>
         <Route path='/admin-panel' element={<AdminLogin/>}/>
+        <Route path='/courier' element={<CourierLogin/>}/>
+        <Route path='/courier-panel' element={<CourierPanel/>}/>
         <Route path='/admin-panel/dashboard' element={
           <AdminProtectedRoute>
             <AdminLayout>
@@ -99,7 +104,7 @@ function App() {
         }/>
         <Route path='*' element={<NotFound/>}/> 
       </Routes>
-      {!hideLayout && !isAdminPage && <Footer />}
+      {!hideLayout && !isAdminPage && !isCourierPage && <Footer />}
     </>
   )
 }
