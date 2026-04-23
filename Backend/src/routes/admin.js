@@ -76,4 +76,27 @@ router.get("/order-status-stats", async (req, res) => {
     }
 });
 
+// --------------------------------------
+// 3) ÖSSZES RENDELÉS LEKÉRÉSE
+// --------------------------------------
+router.get("/orders", async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from("orders")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            return res.status(500).json({ error: "Nem sikerült lekérni a rendeléseket" });
+        }
+
+        res.json(data);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Szerver hiba rendelés lekéréskor" });
+    }
+});
+
+
 export default router;
