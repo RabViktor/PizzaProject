@@ -231,6 +231,46 @@ router.put("/products/:id/toggle", async (req, res) => {
     res.json({ message: "Elérhetőség módosítva!" });
 });
 
+/* -----------------------------
+   RENDELÉS STÁTUSZ FRISSÍTÉSE
+----------------------------- */
+router.put("/orders/:id/status", async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const { error } = await supabase
+        .from("orders")
+        .update({ status })
+        .eq("id", id);
+
+    if (error) {
+        return res.status(500).json({ error: "Nem sikerült frissíteni a státuszt" });
+    }
+
+    res.json({ message: "Státusz frissítve!" });
+});
+
+/* -----------------------------
+   FUTÁR HOZZÁRENDELÉSE
+----------------------------- */
+router.put("/orders/:id/courier", async (req, res) => {
+    const { id } = req.params;
+    const { courier_id } = req.body;
+
+    const { error } = await supabase
+        .from("orders")
+        .update({ 
+            courier_id,
+            status: "delivering" 
+        })
+        .eq("id", id);
+
+    if (error) {
+        return res.status(500).json({ error: "Nem sikerült futárt hozzárendelni" });
+    }
+
+    res.json({ message: "Futár hozzárendelve!" });
+});
 
 
 export default router;

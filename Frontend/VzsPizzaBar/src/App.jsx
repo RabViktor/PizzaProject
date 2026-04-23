@@ -20,6 +20,7 @@ import { Dashboard } from './admin-panel/Dashboard';
 import { AdminLayout } from './admin-panel/AdminLayout';
 import { Users } from './admin-panel/Users';
 import { Products } from './admin-panel/Products';
+import { Orders } from './admin-panel/Orders';
 
 function App() {
 
@@ -86,6 +87,13 @@ function App() {
           <AdminProtectedRoute>
             <AdminLayout>
               <Products/>
+            </AdminLayout>
+          </AdminProtectedRoute>
+        }/>
+        <Route path='/admin-panel/orders' element={
+          <AdminProtectedRoute>
+            <AdminLayout>
+              <Orders/>
             </AdminLayout>
           </AdminProtectedRoute>
         }/>
