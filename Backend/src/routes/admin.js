@@ -149,6 +149,88 @@ router.put("/users/role", async (req, res) => {
     res.json({ message: "Szerep frissítve!" });
 });
 
+// --------------------------------------
+// TERMÉKEK LISTÁZÁSA
+// --------------------------------------
+router.get("/products", async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from("products")
+            .select("*")
+
+        if (error) return res.status(500).json({ error: error.message });
+
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: "Hiba történt a termékek lekérésekor" });
+    }
+});
+
+// --------------------------------------
+// ÚJ TERMÉK HOZZÁADÁSA
+// --------------------------------------
+router.post("/products", async (req, res) => {
+    const { name, category, price, image, description } = req.body;
+
+    const { error } = await supabase
+        .from("products")
+        .insert([{ name, category, price, image, description }]);
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    res.json({ message: "Termék hozzáadva!" });
+});
+
+// --------------------------------------
+// TERMÉK SZERKESZTÉSE
+// --------------------------------------
+router.put("/products/:id", async (req, res) => {
+    const { id } = req.params;
+    const { name, category, price, image, description } = req.body;
+
+    const { error } = await supabase
+        .from("products")
+        .update({ name, category, price, image, description })
+        .eq("id", id);
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    res.json({ message: "Termék frissítve!" });
+});
+
+// --------------------------------------
+// TERMÉK TÖRLÉSE
+// --------------------------------------
+router.delete("/products/:id", async (req, res) => {
+    const { id } = req.params;
+
+    const { error } = await supabase
+        .from("products")
+        .delete()
+        .eq("id", id);
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    res.json({ message: "Termék törölve!" });
+});
+
+// --------------------------------------
+// IDEIGLENES LEVÉTEL / VISSZATÉTEL
+// --------------------------------------
+router.put("/products/:id/toggle", async (req, res) => {
+    const { id } = req.params;
+    const { available } = req.body;
+
+    const { error } = await supabase
+        .from("products")
+        .update({ available })
+        .eq("id", id);
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    res.json({ message: "Elérhetőség módosítva!" });
+});
+
 
 
 export default router;

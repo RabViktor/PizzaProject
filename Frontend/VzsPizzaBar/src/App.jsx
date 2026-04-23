@@ -19,6 +19,7 @@ import { AdminProtectedRoute } from './admin-panel/AdminProtectedRoute';
 import { Dashboard } from './admin-panel/Dashboard';
 import { AdminLayout } from './admin-panel/AdminLayout';
 import { Users } from './admin-panel/Users';
+import { Products } from './admin-panel/Products';
 
 function App() {
 
@@ -78,6 +79,13 @@ function App() {
           <AdminProtectedRoute>
             <AdminLayout>
               <Users/>
+            </AdminLayout>
+          </AdminProtectedRoute>
+        }/>
+        <Route path='/admin-panel/products' element={
+          <AdminProtectedRoute>
+            <AdminLayout>
+              <Products/>
             </AdminLayout>
           </AdminProtectedRoute>
         }/>
