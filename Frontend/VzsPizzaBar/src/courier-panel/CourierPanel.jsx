@@ -68,23 +68,23 @@ export function CourierPanel() {
         <div className="courier-panel">
 
             {/* Statisztika kártyák */}
-            <div className="stats-grid">
-                <div className="stat-card">
+            <div className="stats-grid-c">
+                <div className="stat-card-c">
                     <h3>Mai teljesítések</h3>
                     <p>{stats.completedToday} cím</p>
                 </div>
 
-                <div className="stat-card">
+                <div className="stat-card-c">
                     <h3>Készpénz összesen</h3>
                     <p>{stats.cashTotal} Ft</p>
                 </div>
 
-                <div className="stat-card">
+                <div className="stat-card-c">
                     <h3>Kártyás összesen</h3>
                     <p>{stats.cardTotal} Ft</p>
                 </div>
 
-                <div className="stat-card">
+                <div className="stat-card-c">
                     <h3>Hátralévő címek</h3>
                     <p>{stats.remaining} db</p>
                 </div>
