@@ -47,7 +47,7 @@
 
 .order-card h2 {
     margin-bottom: 10px;
-    font-size: 26px;
+    font-size: 35px;
 }
 
 .order-card p {
@@ -57,7 +57,6 @@
 
 .order-card a {
     color: #bc271c;
-    font-weight: bold;
     text-decoration: none;
 }
 
@@ -65,12 +64,11 @@
     width: 100%;
     margin-top: 15px;
     padding: 14px;
-    font-size: 22px;
+    font-size: 32px;
     border: none;
     border-radius: 10px;
     background: #2ecc71;
     color: white;
-    font-weight: bold;
     cursor: pointer;
 }
 

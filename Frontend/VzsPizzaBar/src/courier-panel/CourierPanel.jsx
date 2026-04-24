@@ -96,7 +96,9 @@ export function CourierPanel() {
                     .filter(o => o.status !== "completed")
                     .map(order => (
                         <div className="order-card" key={order.id}>
-                            <h2>{order.name}</h2>
+                            <h2>Név: {order.user_name}</h2>
+
+                            <p>Rendelés szám: #{order.order_number}</p>
 
                             <p>
                                 <strong>Cím:</strong>{" "}
