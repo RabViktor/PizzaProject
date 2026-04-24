@@ -9,19 +9,50 @@ const router = express.Router();
 router.get("/orders/:courierId", async (req, res) => {
     const { courierId } = req.params;
 
-    const { data, error } = await supabase
+    // 1) Rendelések lekérése
+    const { data: orders, error: ordersError } = await supabase
         .from("orders")
         .select("*")
         .eq("courier_id", courierId)
         .order("created_at", { ascending: false });
 
-    if (error) {
-        console.error(error);
-        return res.status(500).json({ error: "Nem sikerült lekérni a futár rendeléseit" });
+    if (ordersError) {
+        console.error(ordersError);
+        return res.status(500).json({ error: "Nem sikerült lekérni a rendeléseket" });
     }
 
-    res.json(data);
+    // Ha nincs rendelés, küldjük vissza üresen
+    if (orders.length === 0) {
+        return res.json([]);
+    }
+
+    // 2) User ID-k kigyűjtése
+    const userIds = orders.map(o => o.user_id);
+
+    // 3) Userek lekérése
+    const { data: users, error: usersError } = await supabase
+        .from("users")
+        .select("id, name, phone")
+        .in("id", userIds);
+
+    if (usersError) {
+        console.error(usersError);
+        return res.status(500).json({ error: "Nem sikerült lekérni a felhasználókat" });
+    }
+
+    // 4) JOIN (összefűzés)
+    const merged = orders.map(order => {
+        const user = users.find(u => u.id === order.user_id);
+        return {
+            ...order,
+            user_name: user?.name || "N/A",
+            user_phone: user?.phone || "N/A"
+        };
+    });
+
+    res.json(merged);
 });
+
 
 /* ---------------------------------------------------
    FUTÁR RENDELÉS STÁTUSZ FRISSÍTÉS
