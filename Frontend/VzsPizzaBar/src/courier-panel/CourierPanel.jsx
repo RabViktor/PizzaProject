@@ -69,10 +69,6 @@ export function CourierPanel() {
 
             {/* Statisztika kártyák */}
             <div className="stats-grid-c">
-                <div className="stat-card-c">
-                    <h3>Mai teljesítések</h3>
-                    <p>{stats.completedToday} cím</p>
-                </div>
 
                 <div className="stat-card-c">
                     <h3>Készpénz összesen</h3>
