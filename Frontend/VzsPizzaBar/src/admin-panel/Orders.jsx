@@ -8,6 +8,8 @@ export function Orders() {
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
 
+    const [selectedOrder, setSelectedOrder] = useState(null); // ⭐ MODALHOZ
+
     const { showToast } = useCart();
 
     const fetchOrders = async () => {
@@ -107,6 +109,7 @@ export function Orders() {
                         <th>Státusz</th>
                         <th>Futár</th>
                         <th>Dátum</th>
+                        <th>Részletek</th>
                         <th>Műveletek</th>
                     </tr>
                 </thead>
@@ -147,6 +150,15 @@ export function Orders() {
                             <td>{new Date(order.created_at).toLocaleString()}</td>
 
                             <td>
+                                <button
+                                    className="details-btn"
+                                    onClick={() => setSelectedOrder(order)}
+                                >
+                                    Részletek
+                                </button>
+                            </td>
+
+                            <td>
                                 <select
                                     className="status-select"
                                     value={order.status}
@@ -163,6 +175,45 @@ export function Orders() {
                     ))}
                 </tbody>
             </table>
+
+            {/* ⭐ MODAL – RENDELÉS RÉSZLETEK */}
+            {selectedOrder && (
+                <div className="modal-overlay" onClick={() => setSelectedOrder(null)}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <h2>Rendelés #{selectedOrder.id}</h2>
+                        <p><strong>Cím:</strong> {selectedOrder.address}</p>
+                        <p><strong>Telefon:</strong> {selectedOrder.phone}</p>
+                        <p><strong>Fizetés:</strong> {selectedOrder.payment_method}</p>
+                        <p><strong>Összeg:</strong> {selectedOrder.total_price} Ft</p>
+
+                        <h3>Rendelt tételek:</h3>
+
+                        {selectedOrder.order_items?.map(item => (
+                            <div key={item.id} className="modal-item">
+                                <p><strong>Termék ID:</strong> {item.product_id}</p>
+                                <p><strong>Mennyiség:</strong> {item.quantity} db</p>
+
+                                {item.size && <p><strong>Méret:</strong> {item.size}</p>}
+
+                                {item.sauce && (
+                                    <p><strong>Szószok:</strong> {item.sauce}</p>
+                                )}
+
+                                {item.extras && (
+                                    <p><strong>Plusz feltétek:</strong> {item.extras} 
+                                    {item.extra_price > 0 && ` (+${item.extra_price} Ft)`}</p>
+                                )}
+
+                                <p><strong>Ár:</strong> {item.price_snapshot} Ft</p>
+                            </div>
+                        ))}
+
+                        <button className="close-btn" onClick={() => setSelectedOrder(null)}>
+                            Bezárás
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
