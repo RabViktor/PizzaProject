@@ -22,18 +22,32 @@ router.post("/create-checkout-session", async (req, res) => {
             return res.status(500).json({ error: "DB error" });
         }
 
-        // 2) Teljes ár kiszámolása
+        // 2) Teljes ár kiszámolása (plusz feltétekkel!)
         let total = 0;
 
         items.forEach(cartItem => {
             const product = products.find(p => p.id === cartItem.id);
-            total += product.price * cartItem.quantity;
+
+            // alap ár
+            let itemTotal = product.price;
+
+            // méret felár
+            if (cartItem.size && cartItem.price) {
+                itemTotal = cartItem.price; // frontend már tartalmazza a méret felárat
+            }
+
+            // plusz feltétek ára
+            const extraPrice = cartItem.extraPrice || 0;
+            itemTotal += extraPrice;
+
+            // mennyiség
+            total += itemTotal * cartItem.quantity;
         });
 
         const deliveryFee = 990;
         total += deliveryFee;
 
-        // 3) Rendelés mentése (order_number automatikusan generálódik!)
+        // 3) Rendelés mentése
         const { data: order, error: orderError } = await supabase
             .from("orders")
             .insert({
@@ -52,14 +66,16 @@ router.post("/create-checkout-session", async (req, res) => {
             return res.status(500).json({ error: "Order insert error" });
         }
 
-        // 4) order_items beszúrása
+        // 4) order_items beszúrása (plusz feltétekkel!)
         const orderItems = items.map(item => ({
             order_id: order.id,
             product_id: item.id,
             quantity: item.quantity,
-            price_snapshot: item.price,
+            price_snapshot: item.price + (item.extraPrice || 0), // teljes ár
             sauce: item.sauces ? item.sauces.join(", ") : null,
-            size: item.size || null
+            size: item.size || null,
+            extras: item.extras ? item.extras.join(", ") : null,
+            extra_price: item.extraPrice || 0
         }));
 
         const { error: orderItemsError } = await supabase
@@ -75,11 +91,13 @@ router.post("/create-checkout-session", async (req, res) => {
         const line_items = items.map(cartItem => {
             const product = products.find(p => p.id === cartItem.id);
 
+            const unitAmount = (cartItem.price + (cartItem.extraPrice || 0)) * 100;
+
             return {
                 price_data: {
                     currency: "huf",
                     product_data: { name: product.name },
-                    unit_amount: product.price * 100
+                    unit_amount: unitAmount
                 },
                 quantity: cartItem.quantity
             };
@@ -104,7 +122,7 @@ router.post("/create-checkout-session", async (req, res) => {
             cancel_url: "http://localhost:5173/cart",
             metadata: {
                 order_id: order.id,
-                order_number: order.order_number,   // 🔥 már az adatbázis generálja!
+                order_number: order.order_number,
                 name: customerData.name,
                 phone: customerData.phone,
                 city: customerData.city,
@@ -114,7 +132,6 @@ router.post("/create-checkout-session", async (req, res) => {
             }
         });
 
-        // 7) Visszaküldjük a rendelés számot a frontendnek (készpénzes fizetéshez)
         res.json({ url: session.url, orderNumber: order.order_number });
 
     } catch (err) {
