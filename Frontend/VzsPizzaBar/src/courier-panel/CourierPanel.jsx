@@ -66,10 +66,8 @@ export function CourierPanel() {
 
     return (
         <div className="courier-panel">
-
             {/* Statisztika kártyák */}
-            <div className="stats-grid-c">
-
+            <div className="stats-grid-c">  
                 <div className="stat-card-c">
                     <h3>Készpénz összesen</h3>
                     <p>{stats.cashTotal} Ft</p>

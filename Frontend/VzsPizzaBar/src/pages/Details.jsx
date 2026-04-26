@@ -7,6 +7,7 @@ import { useCart } from "../context/CartContext"
 import { QuantitySelector } from '../components/QuantitySelector'
 import { PizzaSizeSelector } from '../components/PizzaSizeSelector'
 import { SauceSelector } from '../components/SauceSelector'
+import { ExtraSelector } from '../components/ExtraSelector'
 
 export function Details(){
     const {id} = useParams()
@@ -22,19 +23,21 @@ export function Details(){
     const [selectedSize, setSelectedSize] = useState(null)
 
     const [selectedSauces, setSelectedSauces] = useState([])
+    const [selectedExtras, setSelectedExtras] = useState([]);
 
-    
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     const nav = useNavigate();
 
-    const finalPrice = product && selectedSize
-        ? product.price + selectedSize.extra
-        : product?.price
+    // ➤ Plusz feltét ár számítása
+    const extraPrice = selectedExtras.length * 300;
 
-
+    // ➤ Végső ár számítása
+    const finalPrice = product
+        ? (selectedSize ? product.price + selectedSize.extra : product.price) + extraPrice
+        : 0;
 
     useEffect(() => {
         const leker = async () => {
@@ -76,12 +79,20 @@ export function Details(){
                             <h2>{product.name}</h2>
                             <p>{product.description}</p>
 
+                            {/* Pizza méret */}
                             {category === "pizza" && (
                                 <PizzaSizeSelector 
                                     selectedSize={selectedSize} 
                                     onChange={setSelectedSize}
                                 />
                             )}
+
+                            {/* Plusz feltétek */}
+                            {category === "pizza" && (
+                                <ExtraSelector max={8} onChange={setSelectedExtras} />
+                            )}
+
+                            {/* Chicken szószok */}
                             {category === "chicken" && (
                                 <SauceSelector price={product.price} onChange={setSelectedSauces}/>
                             )}
@@ -91,23 +102,21 @@ export function Details(){
                             <div id='btn-price'>
                                 <button
                                     onClick={() => {
+                                        // Pizza méret ellenőrzés
                                         if (category === "pizza" && !selectedSize) {
                                             showToast("Válassz méretet!");
                                             return;
                                         }
-                                        
-                                        let sauceQuantity = 0
-                                        if(product.price > 3000){
-                                            sauceQuantity = 2
-                                        }else if(product.price < 3000){
-                                            sauceQuantity = 1
-                                        }
-                                        
-                                        if (category === "chicken" && selectedSauces.length != sauceQuantity) {
+
+                                        // Chicken szósz ellenőrzés
+                                        let sauceQuantity = product.price > 3000 ? 2 : 1;
+
+                                        if (category === "chicken" && selectedSauces.length !== sauceQuantity) {
                                             showToast(`Válassz ${sauceQuantity}db szószt!`);
                                             return;
                                         }
 
+                                        // Kosárba rakandó objektum
                                         const itemToAdd = {
                                             ...product,
                                             quantity,
@@ -116,6 +125,8 @@ export function Details(){
 
                                         if (category === "pizza") {
                                             itemToAdd.size = selectedSize.value;
+                                            itemToAdd.extras = selectedExtras;
+                                            itemToAdd.extraPrice = extraPrice; // backendnek jó
                                         }
 
                                         if (category === "chicken") {
@@ -129,7 +140,6 @@ export function Details(){
                                     Kosárba
                                 </button>
 
-
                                 <p>{finalPrice} Ft</p>
                             </div>
                         </div>
@@ -139,5 +149,4 @@ export function Details(){
             )}
         </>
     );
-
 }
