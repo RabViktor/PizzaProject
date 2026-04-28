@@ -22,23 +22,36 @@ router.post("/create-checkout-session", async (req, res) => {
             return res.status(500).json({ error: "DB error" });
         }
 
-        // 2) Teljes ár kiszámolása
+        // 2) Teljes ár kiszámolása (méret + extra + mennyiség)
         let total = 0;
 
         items.forEach(cartItem => {
             const product = products.find(p => p.id === cartItem.id);
-            total += product.price * cartItem.quantity;
+
+            let itemTotal = product.price;
+
+            // méret felár (frontend price tartalmazza)
+            if (cartItem.price) {
+                itemTotal = cartItem.price;
+            }
+
+            // extra feltétek
+            if (cartItem.extraPrice) {
+                itemTotal += cartItem.extraPrice;
+            }
+
+            total += itemTotal * cartItem.quantity;
         });
 
         const deliveryFee = 990;
         total += deliveryFee;
 
-        // 3) Rendelés mentése (order_number automatikusan generálódik!)
+        // 3) Rendelés mentése — total_price !!!
         const { data: order, error: orderError } = await supabase
             .from("orders")
             .insert({
                 user_id: customerData.user_id || null,
-                total,
+                total_price: total,
                 address: `${customerData.city}, ${customerData.roadNum}`,
                 phone: customerData.phone,
                 payment_method: customerData.payment,
@@ -53,14 +66,20 @@ router.post("/create-checkout-session", async (req, res) => {
         }
 
         // 4) order_items beszúrása
-        const orderItems = items.map(item => ({
-            order_id: order.id,
-            product_id: item.id,
-            quantity: item.quantity,
-            price_snapshot: item.price,
-            sauce: item.sauces ? item.sauces.join(", ") : null,
-            size: item.size || null
-        }));
+        const orderItems = items.map(item => {
+            const product = products.find(p => p.id === item.id);
+
+            return {
+                order_id: order.id,
+                product_id: item.id,
+                quantity: item.quantity,
+                price_snapshot: product.price, // mindig a termék alapára
+                sauce: item.sauces ? item.sauces.join(", ") : null,
+                size: item.size || null,
+                extras: item.extras ? item.extras.join(", ") : null,
+                extra_price: item.extraPrice || 0
+            };
+        });
 
         const { error: orderItemsError } = await supabase
             .from("order_items")
@@ -71,15 +90,19 @@ router.post("/create-checkout-session", async (req, res) => {
             return res.status(500).json({ error: "Order items insert error" });
         }
 
-        // 5) Stripe line_items összeállítása
+        // 5) Stripe line_items
         const line_items = items.map(cartItem => {
             const product = products.find(p => p.id === cartItem.id);
+
+            const unitAmount =
+                (cartItem.price || product.price) +
+                (cartItem.extraPrice || 0);
 
             return {
                 price_data: {
                     currency: "huf",
                     product_data: { name: product.name },
-                    unit_amount: product.price * 100
+                    unit_amount: unitAmount * 100
                 },
                 quantity: cartItem.quantity
             };
@@ -94,7 +117,7 @@ router.post("/create-checkout-session", async (req, res) => {
             quantity: 1
         });
 
-        // 6) Stripe session létrehozása
+        // 6) Stripe session
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             mode: "payment",
@@ -104,7 +127,7 @@ router.post("/create-checkout-session", async (req, res) => {
             cancel_url: "http://localhost:5173/cart",
             metadata: {
                 order_id: order.id,
-                order_number: order.order_number,   // 🔥 már az adatbázis generálja!
+                order_number: order.order_number,
                 name: customerData.name,
                 phone: customerData.phone,
                 city: customerData.city,
@@ -114,7 +137,6 @@ router.post("/create-checkout-session", async (req, res) => {
             }
         });
 
-        // 7) Visszaküldjük a rendelés számot a frontendnek (készpénzes fizetéshez)
         res.json({ url: session.url, orderNumber: order.order_number });
 
     } catch (err) {
