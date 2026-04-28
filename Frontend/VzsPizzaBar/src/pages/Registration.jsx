@@ -1,12 +1,21 @@
 import "./Registration.css"
 import { useCart } from '../context/CartContext'
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function Registration(){
 
     const { showToast } = useCart()
-
     const navi = useNavigate()
+
+    const [password, setPassword] = useState("");
+
+    const passwordChecks = {
+        length: password.length >= 7,
+        lower: /[a-z]/.test(password),
+        upper: /[A-Z]/.test(password),
+        number: /\d/.test(password)
+    };
 
     const send = async (e) => {
         e.preventDefault();
@@ -17,23 +26,28 @@ export function Registration(){
         const email = form.email.value.trim();
         const phonePrefix = document.getElementById("phone-num").value;
         const phoneNumber = document.getElementById("phone_number").value.trim();
-        const password = form.password.value;
         const passwordAgain = form["password-again"].value;
         const accepted = document.getElementById("checkbox").checked;
 
-        
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$/;
+
         if (!accepted) {
-            showToast("Fogadd el a feltételeket!")
+            showToast("Fogadd el a feltételeket!");
             return;
         }
 
         if (!name || !email || !phonePrefix || phonePrefix === "none" || !phoneNumber) {
-            showToast("Minden mezőt tölts ki!")
+            showToast("Minden mezőt tölts ki!");
             return;
         }
 
         if (password !== passwordAgain) {
-            showToast("A két jelszó nem egyezik!")
+            showToast("A két jelszó nem egyezik!");
+            return;
+        }
+
+        if (!passwordRegex.test(password)) {
+            showToast("A jelszó nem felel meg a követelményeknek!");
             return;
         }
 
@@ -54,15 +68,15 @@ export function Registration(){
             const data = await res.json();
 
             if (!res.ok) {
-                showToast(`Hiba: ${data.error}`)
+                showToast(`Hiba: ${data.error}`);
                 return;
             }
 
-            showToast("Sikeres regisztráció!")
-            navi('/')
+            showToast("Sikeres regisztráció!");
+            navi('/');
 
         } catch (err) {
-            showToast("Hálózati hiba történt!")
+            showToast("Hálózati hiba történt!");
             console.error(err);
         }
     };
@@ -75,15 +89,19 @@ export function Registration(){
                     <div className="reg-h2">
                         <h2>Regisztráció</h2>
                     </div>
+
                     <div style={{ display:"flex", alignItems:"center", flexDirection:"column", padding:"0 50px"}}>
+
                         <div>
                             <label htmlFor="name">Név:</label> <br />
                             <input type="text" name="name" />
                         </div>
+
                         <div>
                             <label htmlFor="email">E-mail cím:</label><br />
                             <input type="text" name="email" />
                         </div>
+
                         <div>
                             <label htmlFor="phone">Telefonszám:</label>
                             <div>
@@ -95,34 +113,54 @@ export function Registration(){
                                     <option value="70">70</option>
                                     <option value="50">50</option>
                                 </select>
-                                <input id="phone_number" type="number"name="phone" maxLength={"7"} />
+                                <input id="phone_number" type="number" name="phone" maxLength={"7"} />
                             </div>
                         </div>
+
                         <div>
                             <label htmlFor="password">Jelszó:</label><br />
-                            <input type="password" name="password" />
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+
+                            <div className="password-rules" style={{ fontSize:"14px", marginTop:"5px" }}>
+                                <p style={{ color: passwordChecks.length ? "green" : "red" }}>
+                                    • Minimum 7 karakter
+                                </p>
+                                <p style={{ color: passwordChecks.lower ? "green" : "red" }}>
+                                    • Tartalmaz kisbetűt
+                                </p>
+                                <p style={{ color: passwordChecks.upper ? "green" : "red" }}>
+                                    • Tartalmaz nagybetűt
+                                </p>
+                                <p style={{ color: passwordChecks.number ? "green" : "red" }}>
+                                    • Tartalmaz számot
+                                </p>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="password-again">Jelszó mégegyszer:</label><br />
                             <input type="password" name="password-again" />
                         </div>
+
                         <div style={{display:"flex", gap:'0'}}>
                             <input id="checkbox" className="box" type="checkbox" name="box"/>
-                            <label htmlFor="box" style={{fontSize:"32px", padding:"10px"}}>Elolvastam és elfogadom a felhasználási feltételeket.</label>
+                            <label htmlFor="box" style={{fontSize:"32px", padding:"10px"}}>
+                                Elolvastam és elfogadom a felhasználási feltételeket.
+                            </label>
                         </div>
 
                         <div>
                             <button type="submit" className="reg-btn">Regisztráció</button>
                         </div>
-                        
+
                     </div>
                 </form>
-                
-                
             </div>
-           
-
         </>
     )
 }
