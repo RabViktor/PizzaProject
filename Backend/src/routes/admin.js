@@ -96,10 +96,27 @@ router.get("/orders", async (req, res) => {
     try {
         const { data, error } = await supabase
             .from("orders")
-            .select("*")
+            .select(`
+                *,
+                order_items (
+                    id,
+                    product_id,
+                    quantity,
+                    price_snapshot,
+                    sauce,
+                    size,
+                    extras,
+                    extra_price,
+                    products (
+                        name,
+                        image
+                    )
+                )
+            `)
             .order("created_at", { ascending: false });
 
         if (error) {
+            console.error(error);
             return res.status(500).json({ error: "Nem sikerült lekérni a rendeléseket" });
         }
 
@@ -110,6 +127,8 @@ router.get("/orders", async (req, res) => {
         res.status(500).json({ error: "Szerver hiba rendelés lekéréskor" });
     }
 });
+
+
 
 // --------------------------------------
 // 4) FELHASZNÁLÓK LISTÁZÁSA
