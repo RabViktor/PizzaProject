@@ -15,7 +15,7 @@ export function Success() {
 
     useEffect(() => {
         if (sessionId) {
-            fetch(`http://localhost:5000/api/stripe-session/${sessionId}`)
+            fetch(`${import.meta.env.VITE_API_URL}/api/stripe-session/${sessionId}`)
                 .then(res => res.json())
                 .then(data => {
                     setOrderNumber(data.orderNumber);

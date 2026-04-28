@@ -10,7 +10,7 @@ export function Users() {
     const {showToast} = useCart();
 
     const fetchUsers = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/users");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users`);
         const data = await res.json();
         setUsers(data);
         setLoading(false);
@@ -23,7 +23,7 @@ export function Users() {
     };
 
     const updateRole = async (id, newRole) => {
-        const res = await fetch("http://localhost:5000/api/admin/users/role", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/role`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id, role: newRole })
