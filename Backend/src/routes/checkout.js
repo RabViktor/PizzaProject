@@ -5,6 +5,12 @@ import { supabase } from "../supabase.js";
 const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+const getSizePrice = (basePrice, size) => {
+    if (size === "50") return 4700;
+    return basePrice; 
+};
+
+
 router.post("/create-checkout-session", async (req, res) => {
     try {
         const { items, customerData } = req.body;
@@ -69,11 +75,13 @@ router.post("/create-checkout-session", async (req, res) => {
         const orderItems = items.map(item => {
             const product = products.find(p => p.id === item.id);
 
+            const sizePrice = getSizePrice(product.price, item.size);
+
             return {
                 order_id: order.id,
                 product_id: item.id,
                 quantity: item.quantity,
-                price_snapshot: product.price, // mindig a termék alapára
+                price_snapshot: sizePrice, // mindig a termék alapára
                 sauce: item.sauces ? item.sauces.join(", ") : null,
                 size: item.size || null,
                 extras: item.extras ? item.extras.join(", ") : null,

@@ -186,11 +186,11 @@ export function Orders() {
                         <p><strong>Fizetés:</strong> {selectedOrder.payment_method}</p>
                         <p><strong>Összeg:</strong> {selectedOrder.total_price} Ft</p>
 
-                        <h3>Rendelt tételek:</h3>
+                        <h3 style={{fontSize:"38px"}}>Rendelt tételek:</h3>
 
                         {selectedOrder.order_items?.map(item => (
                             <div key={item.id} className="modal-item">
-                                <p><strong>Termék ID:</strong> {item.product_id}</p>
+                                <p><strong>Termék:</strong> {item.products?.name}</p>
                                 <p><strong>Mennyiség:</strong> {item.quantity} db</p>
 
                                 {item.size && <p><strong>Méret:</strong> {item.size}</p>}
