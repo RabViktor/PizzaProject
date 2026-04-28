@@ -7,7 +7,7 @@ export function SearchBar({ isMobile }) {
 
     const handleSearch = async (e) => {
         if (e.key === "Enter") {
-            const res = await fetch("http://localhost:5000/api/products");
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
             const allProducts = await res.json();
 
             const filtered = allProducts.filter(p =>

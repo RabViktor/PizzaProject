@@ -34,7 +34,7 @@ export function ProductList() {
 
         const leker = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/products?category=${selectedCategory}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products?category=${selectedCategory}`);
 
                 if (!res.ok) {
                     throw new Error("Hiba történt a termékek lekérésekor");

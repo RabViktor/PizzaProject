@@ -29,7 +29,7 @@ export function Products() {
     });
 
     const fetchProducts = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/products");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products`);
         const data = await res.json();
         setProducts(data);
     };
@@ -44,7 +44,7 @@ export function Products() {
     );
 
     const addProduct = async () => {
-        await fetch("http://localhost:5000/api/admin/products", {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)
@@ -63,7 +63,7 @@ export function Products() {
     };
 
     const deleteProduct = async (id) => {
-        await fetch(`http://localhost:5000/api/admin/products/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products/${id}`, {
             method: "DELETE"
         });
         showToast("Sikeresen törölve");
@@ -71,7 +71,7 @@ export function Products() {
     };
 
     const toggleProduct = async (id, available) => {
-        await fetch(`http://localhost:5000/api/admin/products/${id}/toggle`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products/${id}/toggle`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ available })
@@ -93,7 +93,7 @@ export function Products() {
     };
 
     const saveEdit = async () => {
-        await fetch(`http://localhost:5000/api/admin/products/${editForm.id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products/${editForm.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

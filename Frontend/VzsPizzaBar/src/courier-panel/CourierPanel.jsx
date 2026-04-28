@@ -14,7 +14,7 @@ export function CourierPanel() {
     });
 
     const fetchOrders = async () => {
-        const res = await fetch(`http://localhost:5000/api/courier/orders/${courierId}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/courier/orders/${courierId}`);
         const data = await res.json();
         setOrders(data);
 
@@ -51,7 +51,7 @@ export function CourierPanel() {
     };
 
     const completeOrder = async (id) => {
-        await fetch(`http://localhost:5000/api/courier/orders/${id}/status`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/courier/orders/${id}/status`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: "completed" })

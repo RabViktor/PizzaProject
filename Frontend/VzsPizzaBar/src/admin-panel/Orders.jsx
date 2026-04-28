@@ -13,13 +13,13 @@ export function Orders() {
     const { showToast } = useCart();
 
     const fetchOrders = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/orders");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/orders`);
         const data = await res.json();
         setOrders(data);
     };
 
     const fetchCouriers = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/users");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users`);
         const data = await res.json();
         setCouriers(data.filter(u => u.role === "courier"));
     };
@@ -42,7 +42,7 @@ export function Orders() {
     });
 
     const updateStatus = async (id, newStatus) => {
-        await fetch(`http://localhost:5000/api/admin/orders/${id}/status`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/admin/orders/${id}/status`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: newStatus })
@@ -53,7 +53,7 @@ export function Orders() {
     };
 
     const assignCourier = async (id, courierId) => {
-        await fetch(`http://localhost:5000/api/admin/orders/${id}/courier`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/admin/orders/${id}/courier`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ courier_id: courierId })

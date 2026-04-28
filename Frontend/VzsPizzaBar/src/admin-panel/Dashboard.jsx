@@ -19,19 +19,19 @@ export function Dashboard() {
     
 
     const fetchStats = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/stats");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/stats`);
         const data = await res.json();
         setStats(data);
     };
 
     const fetchOrders = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/orders");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/orders`);
         const data = await res.json();
         setOrders(data);        
     }
 
     const fetchStatusStats = async () => {
-        const res = await fetch("http://localhost:5000/api/admin/order-status-stats");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/order-status-stats`);
         const data = await res.json();
         setStatusStats(data);
     };
