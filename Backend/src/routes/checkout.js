@@ -52,7 +52,7 @@ router.post("/create-checkout-session", async (req, res) => {
         const deliveryFee = 990;
         total += deliveryFee;
 
-        // 3) Rendelés mentése — total_price !!!
+        // 3) Rendelés mentése
         const { data: order, error: orderError } = await supabase
             .from("orders")
             .insert({
