@@ -20,21 +20,18 @@ export default function UserOrders() {
     };
 
     const toggleOrder = async (orderId) => {
-        if (openOrder === orderId) {
-            setOpenOrder(null);
-            return;
-        }
+    if (openOrder === orderId) {
+        setOpenOrder(null);
+        return;
+    }
 
-        const token = localStorage.getItem("token");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/order/${orderId}`);
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/order/${orderId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
+    const data = await res.json();
+    setOrderItems(data);
+    setOpenOrder(orderId);
+};
 
-        const data = await res.json();
-        setOrderItems(data);
-        setOpenOrder(orderId);
-    };
 
     return (
         <div className="orders-container">
