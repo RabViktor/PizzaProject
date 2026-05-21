@@ -37,7 +37,7 @@ export default function UserOrders() {
         <div className="orders-container">
 
             {orders.map(order => (
-                <div key={order.id} className="order-card" style={{backgroundColor="rgb(243, 229, 190)"}}>
+                <div key={order.id} className="order-card" style={{backgroundColor:"rgb(243, 229, 190)"}}>
                     <div className="order-header">
                         <p><b>Rendelés száma:</b> {order.order_number}</p>
                         <p><b>Dátum:</b> {new Date(order.created_at).toLocaleString()}</p>
