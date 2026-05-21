@@ -1,4 +1,5 @@
 import { ProfileInfo } from "../components/ProfileInfo"
+import {Orders} from "../components/Orders"
 import "./Profile.css"
 import { useState } from "react"
 
@@ -15,6 +16,7 @@ export function Profile(){
                 >
                     Profilom
                 </button>
+
                 <button 
                     onClick={() => setActiveTab("orders")}
                     className={activeTab === "orders" ? 'active' : ''}
@@ -22,10 +24,11 @@ export function Profile(){
                     Rendeléseim
                 </button>
             </div>
+
             <div id="profile-div">
                 {activeTab === "profile" && <ProfileInfo/>}
+                {activeTab === "orders" && <Orders/>}
             </div>
         </>
     )
-
 }
