@@ -43,6 +43,7 @@ export function Nav(){
 
         localStorage.removeItem("token")
         localStorage.removeItem("user")
+        localStorage.removeItem("id")
 
         navi("/");
         window.location.reload()
