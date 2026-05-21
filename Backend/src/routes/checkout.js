@@ -131,8 +131,8 @@ router.post("/create-checkout-session", async (req, res) => {
             mode: "payment",
             line_items,
             customer_email: customerData.email,
-            success_url: "vzspizzabar.onrender.com/success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url: "vzspizzabar.onrender.com/cart",
+            success_url: "https://vzspizzabar.onrender.com/success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url: "https://vzspizzabar.onrender.com/cart",
             metadata: {
                 order_id: order.id,
                 order_number: order.order_number,
