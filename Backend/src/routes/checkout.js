@@ -61,7 +61,7 @@ router.post("/create-checkout-session", async (req, res) => {
                 address: `${customerData.city}, ${customerData.roadNum}`,
                 phone: customerData.phone,
                 payment_method: customerData.payment,
-                status: "pending"
+                status: "in_progress"
             })
             .select()
             .single();
