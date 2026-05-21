@@ -1,5 +1,5 @@
 import { ProfileInfo } from "../components/ProfileInfo"
-import {Orders} from "../components/Orders"
+import Orders from "../components/Orders"
 import "./Profile.css"
 import { useState } from "react"
 
