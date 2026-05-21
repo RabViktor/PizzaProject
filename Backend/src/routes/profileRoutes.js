@@ -1,67 +1,60 @@
-import express from "express"
-import { supabase } from "../supabase.js"
-import { authMiddleware } from "../middleware/authMiddleware.js"
+import express from "express";
+import { supabase } from "../supabase.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/me", authMiddleware, async (req, res) => {
-    const userId = req.user.id
+/* -----------------------------
+   PROFIL LEKÉRÉSE
+----------------------------- */
+router.get("/me", async (req, res) => {
+    const userId = req.query.user_id;
+
+    if (!userId || userId === "null") {
+        return res.status(400).json({ error: "Missing user_id" });
+    }
 
     const { data, error } = await supabase
         .from("users")
         .select("*")
         .eq("id", userId)
-        .single()
+        .single();
 
-    if(error){
-        return res.status(500).json({error: error.message})
+    if (error) return res.status(500).json({ error });
+
+    res.json(data);
+});
+
+/* -----------------------------
+   PROFIL FRISSÍTÉSE
+----------------------------- */
+router.put("/update", async (req, res) => {
+    const userId = req.query.user_id;
+
+    if (!userId || userId === "null") {
+        return res.status(400).json({ error: "Missing user_id" });
     }
 
-    res.json(data)
-})
+    const { name, phone, postcode, city, roadnum } = req.body;
 
-router.put("/update", authMiddleware, async (req, res) => {
-    const userId = req.user.id;
-    const { name, phone, postcode, city, roadnum, email } = req.body;
-
-    // 1) USERS tábla frissítése
-    const { data: userData, error: userErr } = await supabase
+    const { data, error } = await supabase
         .from("users")
-        .update({
-            name,
-            phone,
-            postcode,
-            city,
-            roadnum,
-            email
-        })
+        .update({ name, phone, postcode, city, roadnum })
         .eq("id", userId)
         .select()
         .single();
 
-    if (userErr) {
-        return res.status(500).json({ error: userErr.message });
-    }
+    if (error) return res.status(500).json({ error });
 
-    // 2) AUTH email frissítése
-    const { data: authData, error: authErr } = await supabase.auth.updateUser({
-        email: email
-    });
-
-    if (authErr) {
-        return res.status(400).json({ error: authErr.message });
-    }
-
-    return res.json({
-        message: "Profil és email frissítve",
-        user: userData
-    });
+    res.json(data);
 });
 
+/* -----------------------------
+   FELHASZNÁLÓ RENDELÉSEI
+----------------------------- */
 router.get("/orders", async (req, res) => {
     const userId = req.query.user_id;
 
-    if (!userId) {
+    if (!userId || userId === "null") {
         return res.status(400).json({ error: "Missing user_id" });
     }
 
@@ -76,7 +69,9 @@ router.get("/orders", async (req, res) => {
     res.json(data);
 });
 
-
+/* -----------------------------
+   EGY RENDELÉS TÉTELEI
+----------------------------- */
 router.get("/order/:id", async (req, res) => {
     const orderId = req.params.id;
 
@@ -90,8 +85,4 @@ router.get("/order/:id", async (req, res) => {
     res.json(data);
 });
 
-
-
-
-
-export default router
+export default router;

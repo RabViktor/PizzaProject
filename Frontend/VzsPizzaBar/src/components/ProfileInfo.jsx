@@ -33,8 +33,8 @@ export function ProfileInfo(){
     useEffect(() => {
         const loadProfile = async () => {
             try {
-                const token = localStorage.getItem("token");
-                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/me`, {
+                const token = localStorage.getItem("id");
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/me?user_id=${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
 
@@ -59,7 +59,7 @@ export function ProfileInfo(){
         try {
             const token = localStorage.getItem("token")
 
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/update`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/update?user_id=${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

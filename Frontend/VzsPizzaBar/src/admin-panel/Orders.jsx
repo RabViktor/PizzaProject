@@ -8,7 +8,7 @@ export function Orders() {
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
 
-    const [selectedOrder, setSelectedOrder] = useState(null); // ⭐ MODALHOZ
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     const { showToast } = useCart();
 
