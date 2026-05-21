@@ -1,5 +1,5 @@
 import { ProfileInfo } from "../components/ProfileInfo"
-import Orders from "../components/Orders"
+import UserOrders from "../components/Orders"
 import "./Profile.css"
 import { useState } from "react"
 
@@ -27,7 +27,7 @@ export function Profile(){
 
             <div id="profile-div">
                 {activeTab === "profile" && <ProfileInfo/>}
-                {activeTab === "orders" && <Orders/>}
+                {activeTab === "orders" && <UserOrders/>}
             </div>
         </>
     )

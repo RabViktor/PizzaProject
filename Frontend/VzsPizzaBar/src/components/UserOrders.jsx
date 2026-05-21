@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import "./UserOrders.css"
 
-export default function Orders() {
+export default function UserOrders() {
     const [orders, setOrders] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
     const [orderItems, setOrderItems] = useState([]);
