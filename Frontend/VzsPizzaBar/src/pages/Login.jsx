@@ -36,6 +36,8 @@ export function Login() {
 
       localStorage.setItem("token", data.session.access_token);
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("id", data.user.id);
+
 
       showToast("Sikeres bejelentkezés!");
 
