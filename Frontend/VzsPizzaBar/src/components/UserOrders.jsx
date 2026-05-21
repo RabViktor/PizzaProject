@@ -35,7 +35,6 @@ export default function UserOrders() {
 
     return (
         <div className="orders-container">
-            <h2>Rendeléseim</h2>
 
             {orders.map(order => (
                 <div key={order.id} className="order-card">
