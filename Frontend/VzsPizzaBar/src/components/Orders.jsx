@@ -10,12 +10,10 @@ export default function Orders() {
     }, []);
 
     const loadOrders = async () => {
-        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("id");
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/orders`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/orders?user_id=${userId}`);
+        
         const data = await res.json();
         setOrders(data);
     };
