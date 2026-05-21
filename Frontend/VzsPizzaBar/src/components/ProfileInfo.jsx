@@ -59,7 +59,7 @@ export function ProfileInfo(){
         try {
             const token = localStorage.getItem("token")
 
-            const res = await fetch("http://localhost:5000/api/profile/update", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/update`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -76,6 +76,7 @@ export function ProfileInfo(){
             const data = await res.json()
 
             setActiveBtn(false)
+            loadProfile();
             showToast('Sikeres mentés')
 
         } catch (err) {

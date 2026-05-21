@@ -58,6 +58,42 @@ router.put("/update", authMiddleware, async (req, res) => {
     });
 });
 
+router.get("/orders", async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const { data, error } = await supabase
+            .from("orders")
+            .select("*")
+            .eq("user_id", userId)
+            .order("created_at", { ascending: false });
+
+        if (error) return res.status(500).json({ error });
+
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+router.get("/order/:id", async (req, res) => {
+    try {
+        const orderId = req.params.id;
+
+        const { data, error } = await supabase
+            .from("order_items")
+            .select("*, products(name, image)")
+            .eq("order_id", orderId);
+
+        if (error) return res.status(500).json({ error });
+
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
 
 
 export default router
