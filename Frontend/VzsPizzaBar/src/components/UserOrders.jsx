@@ -37,13 +37,13 @@ export default function UserOrders() {
         <div className="orders-container">
 
             {orders.map(order => (
-                <div key={order.id} className="order-card">
+                <div key={order.id} className="order-card" style={{backgroundColor="rgb(243, 229, 190)"}}>
                     <div className="order-header">
                         <p><b>Rendelés száma:</b> {order.order_number}</p>
                         <p><b>Dátum:</b> {new Date(order.created_at).toLocaleString()}</p>
                         <p><b>Státusz:</b> {order.status}</p>
 
-                        <button onClick={() => toggleOrder(order.id)}>
+                        <button onClick={() => toggleOrder(order.id)} className="btn-user-order">
                             {openOrder === order.id ? "Bezárás" : "Megtekintés"}
                         </button>
                     </div>
